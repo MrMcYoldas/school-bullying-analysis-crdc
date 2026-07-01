@@ -190,6 +190,8 @@ Available documentation includes:
 - Official CRDC Variable Definitions
 - CRDC Appendix Workbook
 
+Note: Some PDF and Excel documentation files may not render directly in GitHub. Use **View raw** or download the file to open it locally.
+
 ---
 
 # 📌 Current Status
