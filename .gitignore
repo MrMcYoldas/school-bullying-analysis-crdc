@@ -24,4 +24,4 @@ __pycache__/
 # ==========================
 .vscode/
 
-*.numbers
+*.numbersnotebooks/01_Data_Exploration.ipynb
