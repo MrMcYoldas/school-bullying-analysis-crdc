@@ -1,129 +1,197 @@
-# School Bullying Analysis using the CRDC 2021–22 Dataset
+# 🏫 School Bullying Analysis using the CRDC 2021–22 Dataset
 
-## Project Overview
-
-This project analyzes school harassment and bullying incidents across U.S. schools using the **Civil Rights Data Collection (CRDC) 2021–22** published by the **U.S. Department of Education, Office for Civil Rights (OCR)**.
-
-The goal is to identify patterns in reported bullying incidents, compare affected student groups, and examine how schools respond to these incidents using publicly available national education data.
+> A data analytics project exploring patterns of school bullying and harassment across nearly 100,000 U.S. schools using the Civil Rights Data Collection (CRDC) 2021–22.
 
 ---
 
-## Business Problem
+# 📖 Project Vision
 
-School bullying negatively impacts students' well-being, academic performance, and school climate. Although schools report incidents to the CRDC, it is often difficult to understand national patterns, identify vulnerable student groups, and compare institutional responses across schools.
+School bullying remains one of the most significant challenges affecting students' well-being, academic performance, and school climate.
 
-This project aims to transform raw CRDC data into meaningful insights that support data-driven decision making.
+While many discussions around bullying rely on individual stories or small-scale studies, the U.S. Department of Education collects nationwide administrative data through the Civil Rights Data Collection (CRDC).
+
+This project aims to transform that large and complex dataset into meaningful insights by answering questions such as:
+
+- Which types of bullying are reported most frequently?
+- Which student groups appear most affected?
+- How do schools differ in reported incidents?
+- How often are disciplinary actions reported following bullying allegations?
+- Are there geographical patterns across states and school districts?
+
+Rather than focusing on individual schools, the goal is to identify broader patterns that may help support evidence-based discussions around school safety and student well-being.
 
 ---
 
-## Project Objectives
+# 🎯 Objectives
 
-- Analyze reported harassment and bullying incidents
-- Compare incident rates across schools and states
-- Identify demographic groups most frequently affected
-- Explore differences in school disciplinary responses
-- Build interactive Tableau dashboards to communicate findings
+This project follows a complete analytics workflow:
+
+- Data exploration
+- Data cleaning and transformation (ETL)
+- SQL-based analysis
+- Interactive Tableau dashboards
+- Executive presentation of findings
 
 ---
 
-## Dataset
+# 📊 Dataset
 
-**Source:** U.S. Department of Education – Office for Civil Rights (OCR)
+**Source**
 
-**Dataset:** Civil Rights Data Collection (CRDC) 2021–22
+U.S. Department of Education – Office for Civil Rights
 
-**Coverage**
+**Dataset**
 
-- 98,010 school-year observations
-- 159 variables
-- All 50 U.S. states + District of Columbia
+Civil Rights Data Collection (CRDC) 2021–22
 
-Each row represents one school for one school year.
-
-The dataset contains:
+The dataset contains information reported by public schools across the United States, including:
 
 - School metadata
-- Geographic information
+- Student demographics
 - Harassment and bullying allegations
-- Reported victim counts
-- School disciplinary actions
+- Students reported as affected
+- Students receiving disciplinary actions
 
 ---
 
-## ETL Pipeline
+# 📈 Project Workflow
 
-The raw dataset was processed using Python.
-
-Pipeline steps include:
-
-1. Load the original CRDC dataset
-2. Rename technical column names
-3. Replace CRDC reserve codes with NULL values
-4. Validate the cleaned dataset
-5. Export a clean CSV for PostgreSQL and Tableau
+```
+Raw CRDC Dataset
+        │
+        ▼
+Data Exploration
+        │
+        ▼
+ETL Pipeline
+        │
+        ▼
+Clean Dataset
+        │
+        ▼
+PostgreSQL Database
+        │
+        ▼
+SQL Analysis
+        │
+        ▼
+Tableau Dashboard
+        │
+        ▼
+Presentation & Insights
+```
 
 ---
 
-## Technology Stack
+# 🛠️ Technologies
 
 - Python
 - Pandas
+- Jupyter Notebook
 - PostgreSQL
 - DBeaver
 - SQL
 - Tableau
-- Git & GitHub
+- Git
+- GitHub
 
 ---
 
-## Project Structure
+# 📂 Project Structure
 
 ```
-School_Bullying_Capstone/
-
-├── data/
-│   ├── raw/
-│   └── processed/
+School_Bullying_Capstone
 │
-├── notebooks/
+├── data
+│   ├── raw
+│   └── processed
+│
+├── notebooks
 │   ├── 01_Data_Exploration.ipynb
 │   └── 02_ETL_Pipeline.ipynb
 │
-├── sql/
-├── tableau/
-├── documentation/
-├── exports/
-└── presentation/
+├── documentation
+│   ├── appendix
+│   └── reference
+│
+├── sql
+│
+├── tableau
+│
+├── presentation
+│
+└── README.md
 ```
 
 ---
 
-## Documentation
+# 🔄 ETL Pipeline
 
-This repository includes additional project documentation to improve reproducibility and understanding of the dataset.
+The ETL process includes:
 
-Available documentation includes:
-
-- **Data Dictionary** – Original CRDC variables, simplified column names, and descriptions.
-- **CRDC User Manual** – Official documentation published by the U.S. Department of Education.
-- **CRDC Appendix Workbook** – Variable definitions and metadata.
-- **ETL Pipeline Notebook** – Complete data cleaning and transformation process.
-
----
-
-## Current Status
-
-- ✅ Data exploration completed
-- ✅ ETL pipeline completed
-- ✅ Dataset cleaned and validated
-- ⏳ PostgreSQL data warehouse
-- ⏳ SQL analysis
-- ⏳ Tableau dashboard
-- ⏳ Final presentation
+- Loading the CRDC dataset
+- Renaming technical variable names
+- Preserving identifier fields
+- Converting CRDC reserve codes (-3, -4, -5, -6, -9, -12, -13) to NULL values
+- Exporting a clean analytical dataset
 
 ---
 
-## Author
+# 📚 Documentation
+
+The project includes a complete data dictionary documenting:
+
+- Original CRDC variable names
+- Renamed variables
+- Variable descriptions
+- ETL transformations
+
+Additional documentation includes the official CRDC manuals and reference materials.
+
+---
+
+# 📌 Current Status
+
+✅ Project structure
+
+✅ Data exploration
+
+✅ ETL pipeline
+
+✅ Data cleaning
+
+✅ Documentation
+
+✅ GitHub repository
+
+⬜ PostgreSQL database
+
+⬜ SQL analysis
+
+⬜ Tableau dashboard
+
+⬜ Final presentation
+
+---
+
+# ⚠️ Dataset Notice
+
+The original CRDC dataset is **not included** in this repository.
+
+To reproduce this project:
+
+1. Download the CRDC 2021–22 dataset from the U.S. Department of Education.
+2. Place the ZIP archive in:
+
+```
+data/raw/
+```
+
+3. Run the ETL notebook to generate the cleaned dataset.
+
+---
+
+# 👤 Author
 
 **Yoldas Erdem**
 
