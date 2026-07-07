@@ -1,7 +1,15 @@
+# ======================================================
+# School Bullying Capstone - .gitignore
+# ======================================================
+
 # ==========================
-# Data (do not upload datasets)
+# Raw Data (too large for GitHub)
 # ==========================
-data/
+data/raw/
+data/processed/
+
+# If you later want to upload the cleaned CSV,
+# simply remove data/processed/ above.
 
 # ==========================
 # Jupyter
@@ -12,7 +20,7 @@ data/
 # Python
 # ==========================
 __pycache__/
-*.pyc
+*.py[cod]
 
 # ==========================
 # macOS
@@ -28,15 +36,18 @@ __pycache__/
 # DBeaver
 # ==========================
 sql/Beaver exports/
-*.dbeaver-data-sources.xml
+sql/Beaver exports/**
 *.dbeaver
+*.dbeaver-data-sources.xml
 
 # ==========================
-# Personal working files
+# Personal files
 # ==========================
 *.numbers
 
 # ==========================
-# Jupyter Notebooks
+# Environment files
 # ==========================
-notebooks/01_Data_Exploration.ipynb
+.env
+.venv/
+venv/
