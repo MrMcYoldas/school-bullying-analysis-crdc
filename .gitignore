@@ -24,7 +24,13 @@ __pycache__/
 # ==========================
 .vscode/
 
+# ==========================
+# DBeaver
+# ==========================
 sql/Beaver exports/
+*.dbeaver-data-sources.xml
+*.dbeaver
+
 
 # Personal working files
 *.numbers
