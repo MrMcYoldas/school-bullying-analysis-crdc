@@ -31,8 +31,12 @@ sql/Beaver exports/
 *.dbeaver-data-sources.xml
 *.dbeaver
 
-
+# ==========================
 # Personal working files
+# ==========================
 *.numbers
 
+# ==========================
+# Jupyter Notebooks
+# ==========================
 notebooks/01_Data_Exploration.ipynb
