@@ -24,6 +24,8 @@ __pycache__/
 # ==========================
 .vscode/
 
+sql/Beaver exports/
+
 # Personal working files
 *.numbers
 
