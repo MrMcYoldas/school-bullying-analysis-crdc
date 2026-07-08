@@ -1,155 +1,97 @@
-# Priority Classification & Recommended Actions
+# 🚦 Priority Classification Guide
 
-This guide explains how the dashboard classifies reporting intensity
-across U.S. states using CRDC school-level bullying data. The
-classifications are **decision-support indicators** designed to help
-identify jurisdictions that may warrant additional review. They should
-**not** be interpreted as rankings of school quality or definitive
-evidence of bullying prevalence.
+> **Purpose**
+>
+> The dashboard uses a simple decision-support framework to highlight jurisdictions that may require additional attention. The classifications are **not performance ratings** and should always be interpreted alongside local context, reporting practices and additional educational indicators.
 
 ---
 
-🔴 High Priority
+# Classification Overview
 
-What does it mean?
+| Priority                   |            Threshold             | Primary Objective               |
+| :------------------------- | :------------------------------: | :------------------------------ |
+| 🔴 High Priority           |  ≥ 2.00 allegations per school   | Immediate analytical review     |
+| 🟠 Medium Priority         | 1.00–1.99 allegations per school | Monitor emerging trends         |
+| 🟢 Routine Monitoring      |   < 1.00 allegation per school   | Continue standard monitoring    |
+| ⚪ No Reported Allegations |          0 allegations           | Validate reporting completeness |
 
-Reporting intensity is substantially higher than the national baseline. While this does not automatically indicate more bullying, it signals that the state should be prioritised for further investigation.
+---
 
-Typical Questions
+# 🔴 High Priority
 
-✔ Are particular districts driving the increase?
+|                       |                                                                                                                                                                                                                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interpretation**    | Reporting intensity is substantially above the national baseline. This does **not** automatically indicate more bullying, but it suggests that additional investigation may be beneficial.                                                                                       |
+| **Typical Questions** | • Which districts contribute most to reported allegations?<br>• Which bullying categories are most prevalent?<br>• Are specific student groups disproportionately affected?<br>• Has reporting increased compared with previous CRDC cycles?                                     |
+| **Possible Actions**  | • Conduct district-level investigations.<br>• Review schools with consistently high allegation rates.<br>• Expand prevention programmes and student support services.<br>• Evaluate existing intervention strategies.<br>• Monitor future reporting trends after policy changes. |
 
-✔ Which bullying categories are most common?
+---
 
-✔ Are certain student groups disproportionately affected?
+# 🟠 Medium Priority
 
-✔ Has reporting increased compared to previous years?
+|                       |                                                                                                                                                                                    |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interpretation**    | Reporting intensity is above average but does not currently indicate an immediate concern. Continued monitoring helps identify developing trends before escalation.                |
+| **Typical Questions** | • Are allegation rates increasing over time?<br>• Are individual districts beginning to stand out?<br>• Are prevention programmes producing measurable improvements?               |
+| **Possible Actions**  | • Compare reporting across districts.<br>• Review annual reporting trends.<br>• Evaluate prevention initiatives.<br>• Increase monitoring where allegation rates continue to rise. |
 
-Possible Actions
+---
 
-📊 Conduct district-level deep dives
+# 🟢 Routine Monitoring
 
-🏫 Prioritise schools with consistently high reporting
+|                       |                                                                                                                                                                            |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interpretation**    | Reporting intensity is comparatively low. Existing prevention measures appear stable, although continued monitoring remains important.                                     |
+| **Typical Questions** | • Are reporting levels stable?<br>• Are isolated districts beginning to change?<br>• Are prevention programmes remaining effective?                                        |
+| **Possible Actions**  | • Continue annual monitoring.<br>• Compare long-term trends.<br>• Share effective prevention practices.<br>• Investigate isolated increases before they become widespread. |
 
-👥 Expand prevention programmes and student support
+---
 
-📈 Monitor reporting trends over future CRDC cycles
+# ⚪ No Reported Allegations
 
-📋 Review whether existing intervention strategies remain effective
+|                       |                                                                                                                                               |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Interpretation**    | No allegations were reported during the reporting period. This should **never** be interpreted as evidence that bullying does not occur.      |
+| **Typical Questions** | • Were all schools included?<br>• Was reporting completed correctly?<br>• Could under-reporting influence the results?                        |
+| **Possible Actions**  | • Review reporting completeness.<br>• Validate submitted data.<br>• Compare with previous reporting cycles.<br>• Continue routine monitoring. |
 
-⸻
+---
 
-🟠 Medium Priority
+# 📊 Additional Decision Rule
 
-What does it mean?
+## Disciplinary Response Ratio
 
-Reporting levels are above average but do not currently suggest an immediate concern. These jurisdictions should remain under observation to identify emerging trends.
+| Metric               | Definition                                                                                                                                                                                          |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Purpose**          | Evaluates whether reported allegations resulted in documented disciplinary action.                                                                                                                  |
+| **Calculation**      | Students Receiving Disciplinary Action ÷ Total Reported Allegations                                                                                                                                 |
+| **Review Threshold** | Ratio < **0.75**                                                                                                                                                                                    |
+| **Interpretation**   | A lower ratio may indicate differences in documentation practices, disciplinary approaches or reporting consistency. It should **not** be interpreted as evidence of ineffective school management. |
 
-Typical Questions
+### Example Follow-up Actions
 
-✔ Are reports increasing year over year?
+- Review disciplinary documentation procedures.
+- Compare response practices across school districts.
+- Assess whether disciplinary policies are consistently applied.
+- Investigate schools with unusually low response ratios.
+- Review whether alternative interventions are used instead of formal disciplinary action.
 
-✔ Are specific districts beginning to stand out?
+---
 
-✔ Do prevention programmes show measurable improvements?
+# 📌 Key Takeaways
 
-Possible Actions
+> **Remember the purpose of this framework**
 
-📈 Monitor annual reporting trends
+- The classifications support **exploratory analysis**, not final conclusions.
+- Higher reporting does **not** necessarily indicate poorer school performance.
+- Differences in reporting practices may influence results.
+- Priority levels should always be interpreted together with demographic, geographic and historical trends.
 
-🗺 Compare neighbouring states
+---
 
-🏫 Review district-level variation
+# Dashboard Reference
 
-📚 Evaluate prevention initiatives before escalation becomes necessary
-
-⸻
-
-🟢 Routine Monitoring
-
-What does it mean?
-
-Reporting intensity remains relatively low compared with the national baseline. Existing prevention measures appear stable, although continued monitoring remains important.
-
-Typical Questions
-
-✔ Are reporting levels remaining consistent?
-
-✔ Are isolated districts beginning to change?
-
-Possible Actions
-
-📊 Continue annual monitoring
-
-📈 Compare long-term trends
-
-🏫 Share successful prevention practices
-
-🔍 Investigate isolated increases before they become widespread
-
-⸻
-
-⚪ No Reported Allegations
-
-What does it mean?
-
-No allegations were reported during the selected reporting period.
-
-This should never be interpreted as evidence that bullying does not exist. Reporting completeness, administrative practices and local reporting behaviour should always be considered.
-
-Typical Questions
-
-✔ Were all schools included?
-
-✔ Were reporting procedures completed correctly?
-
-✔ Is under-reporting a possibility?
-
-Possible Actions
-
-📋 Validate reporting completeness
-
-🏫 Review district reporting practices
-
-📊 Compare with previous CRDC collections
-
-🔍 Continue routine monitoring
-
-⸻
-
-⚖️ Additional Decision Rule
-
-Disciplinary Response Ratio
-
-What does it measure?
-
-The proportion of reported allegations that resulted in documented disciplinary action.
-
-Students Receiving Disciplinary Action
-─────────────────────────────────────
-Total Reported Allegations
-
-Why is it useful?
-
-A comparatively low ratio may indicate differences in documentation practices, disciplinary approaches or reporting consistency. It does not imply that schools are responding incorrectly.
-
-Example Follow-up
-
-✔ Review disciplinary documentation
-
-✔ Compare response practices across districts
-
-✔ Assess policy consistency
-
-✔ Investigate unusually low response rates
-
-⸻
-
-📌 Key Takeaway
-
-The priority framework is not a performance score.
-
-It is a decision-support model designed to help education stakeholders quickly identify jurisdictions where additional analysis may be beneficial. Final conclusions should always consider local context, reporting practices and supplementary evidence.
+![Priority Classification Guide](Priority_Classification_Guide.png)
 
 ---
 

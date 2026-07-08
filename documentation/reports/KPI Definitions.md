@@ -12,7 +12,7 @@ Unless otherwise stated, all metrics are calculated using the cleaned CRDC 2021â
 
 ## KPI Summary
 
-![KPI Summary](../Images/image.png)
+![KPI_Definitions](../Images/image.png)
 
 ---
 
