@@ -1,0 +1,1272 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20261.26.0410.0924                               -->
+<workbook locale='en_US' original-version='18.1' source-build='2026.1.1 (20261.26.0410.0924)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MapboxVectorStylesAndLayers />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' inline='true' name='federated.1ljygyr156ms081gaj5hh1elsuzn' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='data-analytics-course-2.c8g8r1deus2v.eu-central-1.rds.amazonaws.com' name='postgres.1qj87770entb6z161vew4118290l'>
+            <connection authentication='username-password' class='postgres' dbname='nf_da_onl_09032026' one-time-sql='' port='5432' server='data-analytics-course-2.c8g8r1deus2v.eu-central-1.rds.amazonaws.com' sslmode='require' username='yoldaserdem' />
+          </named-connection>
+        </named-connections>
+        <relation connection='postgres.1qj87770entb6z161vew4118290l' name='vw_dashboard_summary' table='[s_yoldaserdem].[vw_dashboard_summary]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>school_records</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[school_records]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>school_records</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>jurisdictions</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[jurisdictions]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>jurisdictions</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>school_districts</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[school_districts]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>school_districts</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>juvenile_justice_schools</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[juvenile_justice_schools]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>juvenile_justice_schools</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_main_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[total_main_allegations]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>total_main_allegations</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>students_reported_as_affected</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[students_reported_as_affected]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>students_reported_as_affected</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>students_disciplined</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[students_disciplined]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>students_disciplined</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>schools_with_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[schools_with_allegations]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>schools_with_allegations</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>schools_without_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[schools_without_allegations]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>schools_without_allegations</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>schools_with_allegations_pct</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[schools_with_allegations_pct]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>schools_with_allegations_pct</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>allegations_per_school</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[allegations_per_school]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>allegations_per_school</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>discipline_to_allegation_ratio</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[discipline_to_allegation_ratio]</local-name>
+            <parent-name>[vw_dashboard_summary]</parent-name>
+            <remote-alias>discipline_to_allegation_ratio</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='vw_dashboard_summary' datatype='table' name='[__tableau_internal_object_id__].[vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043]' role='measure' type='quantitative' />
+      <column caption='Allegations Per School' datatype='real' name='[allegations_per_school]' role='measure' type='quantitative' />
+      <column caption='Discipline To Allegation Ratio' datatype='real' name='[discipline_to_allegation_ratio]' role='measure' type='quantitative' />
+      <column caption='Jurisdictions' datatype='integer' name='[jurisdictions]' role='measure' type='quantitative' />
+      <column caption='Juvenile Justice Schools' datatype='integer' name='[juvenile_justice_schools]' role='measure' type='quantitative' />
+      <column caption='School Districts' datatype='integer' name='[school_districts]' role='measure' type='quantitative' />
+      <column caption='School Records' datatype='integer' name='[school_records]' role='measure' type='quantitative' />
+      <column caption='Schools With Allegations' datatype='integer' name='[schools_with_allegations]' role='measure' type='quantitative' />
+      <column caption='Schools With Allegations Pct' datatype='real' name='[schools_with_allegations_pct]' role='measure' type='quantitative' />
+      <column caption='Schools Without Allegations' datatype='integer' name='[schools_without_allegations]' role='measure' type='quantitative' />
+      <column caption='Students Disciplined' datatype='integer' name='[students_disciplined]' role='measure' type='quantitative' />
+      <column caption='Students Reported As Affected' datatype='integer' name='[students_reported_as_affected]' role='measure' type='quantitative' />
+      <column caption='Total Main Allegations' datatype='integer' name='[total_main_allegations]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+      <object-graph>
+        <objects>
+          <object caption='vw_dashboard_summary' id='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary)_39DD37BB9D45499B9DBA2504DE355043'>
+            <properties context=''>
+              <relation connection='postgres.1qj87770entb6z161vew4118290l' name='vw_dashboard_summary' table='[s_yoldaserdem].[vw_dashboard_summary]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption='vw_state_summary (s_yoldaserdem.vw_state_summary) (nf_da_onl_09032026)' inline='true' name='federated.0odtoq51mrihk71as89e00sy026k' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='data-analytics-course-2.c8g8r1deus2v.eu-central-1.rds.amazonaws.com' name='postgres.0qfh2nu0b4ouv312mz89n17ykll8'>
+            <connection authentication='username-password' class='postgres' dbname='nf_da_onl_09032026' one-time-sql='' port='5432' server='data-analytics-course-2.c8g8r1deus2v.eu-central-1.rds.amazonaws.com' sslmode='require' username='yoldaserdem' />
+          </named-connection>
+        </named-connections>
+        <relation connection='postgres.0qfh2nu0b4ouv312mz89n17ykll8' name='vw_state_summary' table='[s_yoldaserdem].[vw_state_summary]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>state</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[state]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>state</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>100</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>school_records</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[school_records]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>school_records</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>school_districts</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[school_districts]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>school_districts</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>juvenile_justice_schools</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[juvenile_justice_schools]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>juvenile_justice_schools</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_main_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[total_main_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>total_main_allegations</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>allegations_per_school</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[allegations_per_school]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>allegations_per_school</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>schools_with_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[schools_with_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>schools_with_allegations</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>schools_without_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[schools_without_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>schools_without_allegations</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>schools_with_allegations_pct</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[schools_with_allegations_pct]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>schools_with_allegations_pct</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>students_reported_as_affected</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[students_reported_as_affected]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>students_reported_as_affected</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>students_disciplined</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[students_disciplined]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>students_disciplined</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>discipline_to_allegation_ratio</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[discipline_to_allegation_ratio]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>discipline_to_allegation_ratio</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>sex_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[sex_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>sex_allegations</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>race_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[race_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>race_allegations</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>orientation_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[orientation_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>orientation_allegations</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>disability_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[disability_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>disability_allegations</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>religion_allegations</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[religion_allegations]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>religion_allegations</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>priority_level</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[priority_level]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>priority_level</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>suggested_action</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[suggested_action]</local-name>
+            <parent-name>[vw_state_summary]</parent-name>
+            <remote-alias>suggested_action</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>2147483647</width>
+            <contains-null>true</contains-null>
+            <cast-to-local-type>true</cast-to-local-type>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='vw_state_summary' datatype='table' name='[__tableau_internal_object_id__].[vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8]' role='measure' type='quantitative' />
+      <column caption='Allegations Per School' datatype='real' name='[allegations_per_school]' role='measure' type='quantitative' />
+      <column caption='Disability Allegations' datatype='integer' name='[disability_allegations]' role='measure' type='quantitative' />
+      <column caption='Discipline To Allegation Ratio' datatype='real' datatype-customized='true' name='[discipline_to_allegation_ratio]' role='measure' type='quantitative' />
+      <column caption='Juvenile Justice Schools' datatype='integer' name='[juvenile_justice_schools]' role='measure' type='quantitative' />
+      <column caption='Orientation Allegations' datatype='integer' name='[orientation_allegations]' role='measure' type='quantitative' />
+      <column caption='Priority Level' datatype='string' name='[priority_level]' role='dimension' type='nominal' />
+      <column caption='Race Allegations' datatype='integer' name='[race_allegations]' role='measure' type='quantitative' />
+      <column caption='Religion Allegations' datatype='integer' name='[religion_allegations]' role='measure' type='quantitative' />
+      <column caption='School Districts' datatype='integer' name='[school_districts]' role='measure' type='quantitative' />
+      <column caption='School Records' datatype='integer' name='[school_records]' role='measure' type='quantitative' />
+      <column caption='Schools With Allegations' datatype='integer' name='[schools_with_allegations]' role='measure' type='quantitative' />
+      <column caption='Schools With Allegations Pct' datatype='real' name='[schools_with_allegations_pct]' role='measure' type='quantitative' />
+      <column caption='Schools Without Allegations' datatype='integer' name='[schools_without_allegations]' role='measure' type='quantitative' />
+      <column caption='Sex Allegations' datatype='integer' name='[sex_allegations]' role='measure' type='quantitative' />
+      <column caption='State' datatype='string' name='[state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Students Disciplined' datatype='integer' name='[students_disciplined]' role='measure' type='quantitative' />
+      <column caption='Students Reported As Affected' datatype='integer' name='[students_reported_as_affected]' role='measure' type='quantitative' />
+      <column caption='Suggested Action' datatype='string' name='[suggested_action]' role='dimension' type='nominal' />
+      <column caption='Total Main Allegations' datatype='integer' name='[total_main_allegations]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+      <object-graph>
+        <objects>
+          <object caption='vw_state_summary' id='vw_state_summary (s_yoldaserdem.vw_state_summary)_37A17688F5F948288FE200CFAA67D2E8'>
+            <properties context=''>
+              <relation connection='postgres.0qfh2nu0b4ouv312mz89n17ykll8' name='vw_state_summary' table='[s_yoldaserdem].[vw_state_summary]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <worksheets>
+    <worksheet name='Allegations per School'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontsize='12'>Normalized reporting intensity.</run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontcolor='#000000' fontname='Benton Sans Book' fontsize='22'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents, not verified individual cases. </run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' name='federated.1ljygyr156ms081gaj5hh1elsuzn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ljygyr156ms081gaj5hh1elsuzn'>
+            <column caption='Allegations Per School' datatype='real' name='[allegations_per_school]' role='measure' type='quantitative' />
+            <column-instance column='[allegations_per_school]' derivation='Sum' name='[sum:allegations_per_school:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:allegations_per_school:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#000000' fontname='Tableau Light'>Average number of reported allegation per school.</run>
+                <run>Æ&#10;&#10;</run>
+                <run fontcolor='#000000' fontname='Tableau Light'>This normalized metric allows fairer comparisons between jurisdictions with different numbers of schools.</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='48'>&lt;</run>
+                <run fontsize='48'>[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:allegations_per_school:qk]</run>
+                <run fontsize='48'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{6DA560A5-04F5-4AF6-925A-96253ADB313E}' />
+    </worksheet>
+    <worksheet name='Jurisdictions'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontsize='20'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontsize='12'>States and reporting jurisdictions included.</run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontcolor='#000000' fontname='Benton Sans Book' fontsize='22'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents, not verified individual cases. </run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' name='federated.1ljygyr156ms081gaj5hh1elsuzn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ljygyr156ms081gaj5hh1elsuzn'>
+            <column caption='Jurisdictions' datatype='integer' name='[jurisdictions]' role='measure' type='quantitative' />
+            <column-instance column='[jurisdictions]' derivation='Sum' name='[sum:jurisdictions:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:jurisdictions:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#000000' fontname='Tableau Light'>Total number of U.S. jurisdictions included in the analysis.</run>
+                <run>Æ&#10;&#10;</run>
+                <run fontcolor='#000000' fontname='Tableau Light'>The dataset covers all reporting states, the District of Columbia, and other reporting jurisdictions included in the CRDC.</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='48'>&lt;</run>
+                <run fontsize='48'>[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:jurisdictions:qk]</run>
+                <run fontsize='48'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{38832A0D-A881-46D8-BF71-BABD43D25A40}' />
+    </worksheet>
+    <worksheet name='Reported Bullying Allegations'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontsize='20'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run bold='true' fontcolor='#000000' fontsize='12'>Total reported allegations across the five primary CRDC categories. </run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontcolor='#000000' fontname='Benton Sans Book' fontsize='22'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents, not verified individual cases. </run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' name='federated.1ljygyr156ms081gaj5hh1elsuzn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ljygyr156ms081gaj5hh1elsuzn'>
+            <column-instance column='[total_main_allegations]' derivation='Sum' name='[sum:total_main_allegations:qk]' pivot='key' type='quantitative' />
+            <column caption='Total Main Allegations' datatype='integer' name='[total_main_allegations]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:total_main_allegations:qk]' value='n#,##0;-#,##0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:total_main_allegations:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#000000' fontname='Tableau Light'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents rather than verified individual cases.</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='48'>&lt;</run>
+                <run fontsize='48'>[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:total_main_allegations:qk]</run>
+                <run fontsize='48'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{4ADB7736-7C0F-4DB1-AD0D-A0BF07A3DAF4}' />
+    </worksheet>
+    <worksheet name='Schools Reporting Incidents'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontsize='12'>Schools reporting at least one allegation.</run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontcolor='#000000' fontname='Benton Sans Book' fontsize='22'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents, not verified individual cases. </run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' name='federated.1ljygyr156ms081gaj5hh1elsuzn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ljygyr156ms081gaj5hh1elsuzn'>
+            <column caption='Schools With Allegations' datatype='integer' name='[schools_with_allegations]' role='measure' type='quantitative' />
+            <column-instance column='[schools_with_allegations]' derivation='Sum' name='[sum:schools_with_allegations:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:schools_with_allegations:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#000000' fontname='Tableau Light'>Number of schools reporting at least one bullying or harassment allegation during the 2021–2022 reporting cycle. </run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#000000' fontname='Tableau Light'>Schools reporting zero allegations should not automatically be interpreted as schools without bullying.</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='48'>&lt;</run>
+                <run fontsize='48'>[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:schools_with_allegations:qk]</run>
+                <run fontsize='48'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{B40C3E91-510C-4391-A2D7-B9017644876F}' />
+    </worksheet>
+    <worksheet name='State Overview Map'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontcolor='#000000' fontsize='20'>Bullying Reporting Intensity by State</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontsize='20'>Æ </run>
+            <run fontcolor='#000000' fontsize='12'>Average reported allegations per school across U.S. jurisdictions.</run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontsize='15'>This map compares the average number of reported bullying allegations per school across U.S. states. Darker shades indicate higher reporting intensity, highlighting jurisdictions where reported incidents are more common relative to the number of schools.</run>
+            <run>Æ&#10;&#10;</run>
+            <run fontsize='15'>The map is intended to identify reporting patterns rather than rank school performance. Higher values may reflect differences in reporting practices, school size, or underlying incident rates. Hover over a state to view additional context, including affected students, disciplinary responses, and recommended monitoring actions.</run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_state_summary (s_yoldaserdem.vw_state_summary) (nf_da_onl_09032026)' name='federated.0odtoq51mrihk71as89e00sy026k' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.0odtoq51mrihk71as89e00sy026k'>
+            <column caption='Allegations Per School' datatype='real' name='[allegations_per_school]' role='measure' type='quantitative' />
+            <column caption='Discipline To Allegation Ratio' datatype='real' datatype-customized='true' name='[discipline_to_allegation_ratio]' role='measure' type='quantitative' />
+            <column-instance column='[allegations_per_school]' derivation='Min' name='[min:allegations_per_school:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[discipline_to_allegation_ratio]' derivation='Min' name='[min:discipline_to_allegation_ratio:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[schools_with_allegations]' derivation='Min' name='[min:schools_with_allegations:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[students_disciplined]' derivation='Min' name='[min:students_disciplined:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[students_reported_as_affected]' derivation='Min' name='[min:students_reported_as_affected:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[total_main_allegations]' derivation='Min' name='[min:total_main_allegations:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[priority_level]' derivation='None' name='[none:priority_level:nk]' pivot='key' type='nominal' />
+            <column-instance column='[state]' derivation='None' name='[none:state:nk]' pivot='key' type='nominal' />
+            <column-instance column='[suggested_action]' derivation='None' name='[none:suggested_action:nk]' pivot='key' type='nominal' />
+            <column caption='Priority Level' datatype='string' name='[priority_level]' role='dimension' type='nominal' />
+            <column caption='Schools With Allegations' datatype='integer' name='[schools_with_allegations]' role='measure' type='quantitative' />
+            <column caption='State' datatype='string' name='[state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column caption='Students Disciplined' datatype='integer' name='[students_disciplined]' role='measure' type='quantitative' />
+            <column caption='Students Reported As Affected' datatype='integer' name='[students_reported_as_affected]' role='measure' type='quantitative' />
+            <column caption='Suggested Action' datatype='string' name='[suggested_action]' role='dimension' type='nominal' />
+            <column caption='Total Main Allegations' datatype='integer' name='[total_main_allegations]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0odtoq51mrihk71as89e00sy026k].[Longitude (generated)]' field-type='quantitative' max='32626274.924343549' min='25403455.527853176' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0odtoq51mrihk71as89e00sy026k].[Latitude (generated)]' field-type='quantitative' max='7423727.1090566134' min='1953059.2548704047' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.0odtoq51mrihk71as89e00sy026k].[min:discipline_to_allegation_ratio:ok]' value='n#,##0.00;-#,##0.00' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Multipolygon' />
+            <encodings>
+              <color column='[federated.0odtoq51mrihk71as89e00sy026k].[min:allegations_per_school:qk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[none:state:nk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[min:total_main_allegations:qk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[min:schools_with_allegations:qk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[min:students_reported_as_affected:qk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[min:students_disciplined:qk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[min:discipline_to_allegation_ratio:ok]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[none:priority_level:nk]' />
+              <lod column='[federated.0odtoq51mrihk71as89e00sy026k].[none:suggested_action:nk]' />
+              <geometry column='[federated.0odtoq51mrihk71as89e00sy026k].[Geometry (generated)]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'>State:</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[none:state:nk]>]]></run>
+                <run>Æ&#10;&#10;</run>
+                <run bold='true'>────────────────────────</run>
+                <run>Æ&#10;</run>
+                <run bold='true'>Reporting Intensity</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[min:allegations_per_school:qk]> allegations per school]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'>Total Reported Allegations</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[min:total_main_allegations:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'>Schools Reporting Allegations</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[min:schools_with_allegations:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'>Students Reported as Affected</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[min:students_reported_as_affected:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'>Students Receiving Disciplinary Action</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[min:students_disciplined:qk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'>Disciplinary Response Ratio</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[min:discipline_to_allegation_ratio:ok]>]]></run>
+                <run>Æ&#10;&#10;</run>
+                <run bold='true'>────────────────────────</run>
+                <run>Æ&#10;&#10;</run>
+                <run bold='true'>Priority Level</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[none:priority_level:nk]>]]></run>
+                <run>Æ&#10;&#10;</run>
+                <run bold='true'>Recommended Action</run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.0odtoq51mrihk71as89e00sy026k].[none:suggested_action:nk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+        </panes>
+        <rows>[federated.0odtoq51mrihk71as89e00sy026k].[Latitude (generated)]</rows>
+        <cols>[federated.0odtoq51mrihk71as89e00sy026k].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{14DA4518-F616-4AD2-864D-688ECA40DA7C}' />
+    </worksheet>
+    <worksheet name='Students Affected'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontsize='20'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontsize='12'>Students reported as affected by bullying or harassment.</run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontcolor='#000000' fontname='Benton Sans Book' fontsize='22'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents, not verified individual cases. </run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' name='federated.1ljygyr156ms081gaj5hh1elsuzn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ljygyr156ms081gaj5hh1elsuzn'>
+            <column caption='Students Reported As Affected' datatype='integer' name='[students_reported_as_affected]' role='measure' type='quantitative' />
+            <column-instance column='[students_reported_as_affected]' derivation='Sum' name='[sum:students_reported_as_affected:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:students_reported_as_affected:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#000000' fontname='Tableau Light'>Represents the number of students reported by schools as affected by bullying or harassment.</run>
+                <run>Æ&#10;&#10;</run>
+                <run fontcolor='#000000' fontname='Tableau Light'>This administrative measure does not represent unique students. A student may appear in multiple reporting categories.</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='48'>&lt;</run>
+                <run fontsize='48'>[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:students_reported_as_affected:qk]</run>
+                <run fontsize='48'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{8F990EF5-BCF9-4022-B41B-AD9E8ED803F8}' />
+    </worksheet>
+    <worksheet name='Students Disciplined'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true' fontsize='20'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontsize='12'>Students receiving disciplinary actions.</run>
+          </formatted-text>
+        </title>
+        <caption>
+          <formatted-text>
+            <run fontcolor='#000000' fontname='Benton Sans Book' fontsize='22'>Represents the total number of reported bullying and harassment allegations across the five primary CRDC categories (Sex, Race, Sexual Orientation, Disability, and Religion). This metric reflects reported incidents, not verified individual cases. </run>
+          </formatted-text>
+        </caption>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_dashboard_summary (s_yoldaserdem.vw_dashboard_summary) (nf_da_onl_09032026)' name='federated.1ljygyr156ms081gaj5hh1elsuzn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1ljygyr156ms081gaj5hh1elsuzn'>
+            <column caption='Students Disciplined' datatype='integer' name='[students_disciplined]' role='measure' type='quantitative' />
+            <column-instance column='[students_disciplined]' derivation='Sum' name='[sum:students_disciplined:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Text' />
+            <encodings>
+              <text column='[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:students_disciplined:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#000000' fontname='Tableau Light'>Students receiving disciplinary action related to bullying or harassment. </run>
+                <run>Æ&#10;</run>
+                <run fontcolor='#000000' fontname='Tableau Light'>The CRDC does not identify perpetrators or link disciplinary actions to individual allegations.</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontsize='48'>&lt;</run>
+                <run fontsize='48'>[federated.1ljygyr156ms081gaj5hh1elsuzn].[sum:students_disciplined:qk]</run>
+                <run fontsize='48'>&gt;</run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{FDC888A9-6E9D-4C6D-AFBA-6513C3962318}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Priority Classification Guide'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run fontname='Tableau Light' fontsize='20'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
+            <run fontcolor='#000000' fontname='Tableau Light' fontsize='12'>Decision rules used to identify reporting intensity and recommended follow-up actions. </run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style />
+      <size sizing-mode='automatic' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='5' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='8625' id='7' type-v2='title' w='98400' x='800' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='89375' id='6' type-v2='layout-basic' w='98400' x='800' y='9625' />
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='2' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='1' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000' />
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{B5329EDC-FBD6-4B73-86DD-D4ABDA5C3B6B}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='51'>
+    <window class='worksheet' name='Reported Bullying Allegations'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{26ADBDA1-2B07-4A07-927A-A57AF51326AD}' />
+    </window>
+    <window class='worksheet' name='Students Affected'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{6253DE42-63DB-4F3B-B49F-C1ACDCA7E5B6}' />
+    </window>
+    <window class='worksheet' name='Students Disciplined'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{C2AD1B14-B2D4-4C14-B7D6-F0C6AB542DF5}' />
+    </window>
+    <window class='worksheet' name='Schools Reporting Incidents'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{C7AB7DFE-7F8F-486D-A96A-CC170809AB5D}' />
+    </window>
+    <window class='worksheet' name='Allegations per School'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{3DBC8A9D-1677-49B0-81ED-E639B76ABD6A}' />
+    </window>
+    <window class='worksheet' name='Jurisdictions'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{70231F52-3FAF-46F0-8C43-DF94377DD6A6}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Priority Classification Guide'>
+      <viewpoints />
+      <active id='6' />
+      <simple-id uuid='{F6E680E3-5AD9-4250-92DD-89B06AA05FDA}' />
+    </window>
+    <window class='worksheet' name='State Overview Map'>
+      <cards>
+        <edge name='left'>
+          <strip size='300'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='100'>
+            <card pane-specification-id='0' param='[federated.0odtoq51mrihk71as89e00sy026k].[min:allegations_per_school:qk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='bottom'>
+          <strip size='241'>
+            <card type='caption' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{141D9AA5-C50C-48BA-BF5C-8D33BE2BC030}' />
+    </window>
+  </windows>
+</workbook>
