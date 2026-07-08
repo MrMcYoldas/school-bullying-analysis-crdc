@@ -91,15 +91,7 @@
 
 # Dashboard Reference
 
-![Priority Classification Guide](Priority_Classification_Guide.png)
-
----
-
-## Priority Classification Guide
-
-The following infographic summarizes the dashboard's decision rules.
-
-![Priority Classification Guide](Priority_Classification_Guide.png)
+![Priority Classification Guide](../Images/Priority_Classification_Guide.png)
 
 ---
 
