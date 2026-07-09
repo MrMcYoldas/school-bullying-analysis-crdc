@@ -868,47 +868,46 @@ SELECT state, 'Race', 'Multi-Race', 'Female', 7,
 FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state;
 
 ------------------------------------------------------
+------------------------------------------------------
 -- CRDC BULLYING DASHBOARD
 -- View: vw_state_action_matrix
 -- Purpose: State-level executive action matrix showing
 -- each state's top three protected harassment categories,
--- reporting volume, priority level, and category-specific
--- recommended action.
+-- national reporting rank, priority tier, and dynamic
+-- recommended actions.
 ------------------------------------------------------
 -- Visualization:
 -- State Priority Action Matrix
+------------------------------------------------------
+-- STATUS: FINAL
+-- Used by: State Priority Action Matrix
+-- Last Updated: 2026-07-09
 ------------------------------------------------------
 
 DROP VIEW IF EXISTS s_yoldaserdem.vw_state_action_matrix;
 
 CREATE VIEW s_yoldaserdem.vw_state_action_matrix AS
-
 WITH category_long AS (
     SELECT state, 'Sex' AS protected_category, SUM(COALESCE(allegation_sex, 0)) AS category_allegations
     FROM s_yoldaserdem.crdc_bullying_clean
     GROUP BY state
-
     UNION ALL
     SELECT state, 'Race', SUM(COALESCE(allegation_race, 0))
     FROM s_yoldaserdem.crdc_bullying_clean
     GROUP BY state
-
     UNION ALL
     SELECT state, 'Sexual Orientation', SUM(COALESCE(allegation_orientation, 0))
     FROM s_yoldaserdem.crdc_bullying_clean
     GROUP BY state
-
     UNION ALL
     SELECT state, 'Disability', SUM(COALESCE(allegation_disability, 0))
     FROM s_yoldaserdem.crdc_bullying_clean
     GROUP BY state
-
     UNION ALL
     SELECT state, 'Religion', SUM(COALESCE(allegation_religion, 0))
     FROM s_yoldaserdem.crdc_bullying_clean
     GROUP BY state
 ),
-
 ranked AS (
     SELECT
         state,
@@ -920,7 +919,6 @@ ranked AS (
         ) AS category_rank
     FROM category_long
 ),
-
 state_metrics AS (
     SELECT
         state,
@@ -931,23 +929,47 @@ state_metrics AS (
         students_disciplined,
         discipline_to_allegation_ratio,
         priority_level,
-        suggested_action
+        suggested_action,
+        DENSE_RANK() OVER (
+            ORDER BY allegations_per_school DESC
+        ) AS state_rank,
+        CASE
+            WHEN priority_level = 'High priority' THEN 3
+            WHEN priority_level = 'Medium priority' THEN 2
+            WHEN priority_level = 'Routine monitoring' THEN 1
+            ELSE 0
+        END AS priority_score
     FROM s_yoldaserdem.vw_state_summary
 )
-
 SELECT
     r.state,
-
+    r.state AS state_filter_value,
+    CONCAT(r.state, ' | ', sm.priority_level) AS state_focus_label,
+    CONCAT(
+        r.state,
+        ' | National Rank #',
+        sm.state_rank,
+        ' | ',
+        sm.priority_level,
+        ' | ',
+        TO_CHAR(sm.normalized_reporting_rate, 'FM999,999,990.000'),
+        ' allegations per school'
+    ) AS state_priority_summary,
+    sm.state_rank,
+    CASE
+        WHEN sm.state_rank <= 5 THEN '🚨 National Hotspot (Top 5)'
+        WHEN sm.state_rank <= 10 THEN '⚠️ High National Concern (Top 10)'
+        WHEN sm.state_rank <= 20 THEN '📊 Elevated Reporting (Top 20)'
+        ELSE '✅ Maintain Monitoring'
+    END AS national_reporting_tier,
     CASE
         WHEN r.category_rank = 1 THEN '🥇 Primary issue'
         WHEN r.category_rank = 2 THEN '🥈 Secondary issue'
         WHEN r.category_rank = 3 THEN '🥉 Third issue'
     END AS issue_rank_label,
-
     r.category_rank,
     r.protected_category,
     r.category_allegations,
-
     sm.total_main_allegations,
     sm.normalized_reporting_rate,
     sm.schools_with_allegations,
@@ -955,22 +977,90 @@ SELECT
     sm.students_disciplined,
     sm.discipline_to_allegation_ratio,
     sm.priority_level,
+    sm.priority_score,
     sm.suggested_action,
-
+    (sm.priority_score * 1000000) + COALESCE(sm.normalized_reporting_rate, 0) AS state_sort_score,
+    CASE
+        WHEN sm.state_rank <= 5 THEN
+            CONCAT(
+                '🚨 National Hotspot (Ranked #',
+                sm.state_rank,
+                ' of 52 jurisdictions). This state ranks among the highest reporting jurisdictions nationwide and warrants immediate statewide attention.'
+            )
+        WHEN sm.state_rank <= 10 THEN
+            CONCAT(
+                '⚠️ High National Concern (Ranked #',
+                sm.state_rank,
+                ' of 52 jurisdictions). Reporting intensity is among the highest nationwide and should remain a priority for prevention and monitoring.'
+            )
+        WHEN sm.state_rank <= 20 THEN
+            CONCAT(
+                '📊 Elevated Reporting (Ranked #',
+                sm.state_rank,
+                ' of 52 jurisdictions). Reporting activity remains elevated and should be monitored through targeted prevention and district-level review.'
+            )
+        WHEN sm.priority_level = 'High priority'
+             AND sm.discipline_to_allegation_ratio < 0.60 THEN
+            'Critical statewide attention recommended. High reporting combined with comparatively lower disciplinary response suggests reviewing investigation consistency.'
+        WHEN sm.priority_level = 'High priority' THEN
+            'High statewide reporting intensity indicates sustained bullying patterns requiring continued prevention and monitoring.'
+        WHEN sm.priority_level = 'Medium priority' THEN
+            'Moderate reporting activity observed. Continue monitoring districts with recurring incidents while supporting preventative programs.'
+        ELSE
+            'Routine monitoring is currently appropriate while continuing annual prevention and reporting initiatives.'
+    END AS overall_assessment,
+    CASE
+        WHEN sm.state_rank <= 5 THEN
+            'Prioritize statewide prevention initiatives, identify districts contributing most to reporting volume, and review investigation consistency.'
+        WHEN sm.state_rank <= 10 THEN
+            'Maintain statewide prevention focus, compare district-level patterns, and monitor response consistency.'
+        WHEN sm.state_rank <= 20 THEN
+            'Continue district-level monitoring and target prevention resources toward recurring reporting patterns.'
+        WHEN sm.discipline_to_allegation_ratio < 0.60 THEN
+            'Review disciplinary consistency and investigation practices across districts with elevated reporting.'
+        WHEN sm.priority_level = 'Medium priority' THEN
+            'Target prevention resources toward districts with sustained reporting while monitoring annual trends.'
+        ELSE
+            'Maintain routine monitoring and continue supporting accurate reporting practices.'
+    END
+    ||
+    ' '
+    ||
     CASE
         WHEN r.protected_category = 'Sex'
-            THEN 'Review sex-based harassment prevention, reporting channels, and response consistency.'
+            THEN 'Strengthen sex-based harassment prevention, reporting channels, and response consistency.'
         WHEN r.protected_category = 'Race'
-            THEN 'Review racial harassment patterns, district equity practices, and targeted prevention support.'
+            THEN 'Prioritize anti-bias initiatives and review districts with repeated race-based harassment.'
         WHEN r.protected_category = 'Sexual Orientation'
-            THEN 'Review inclusive school climate practices and support systems for LGBTQ+ students.'
+            THEN 'Expand LGBTQ+ student support and strengthen inclusive school climate practices.'
         WHEN r.protected_category = 'Disability'
-            THEN 'Review disability-related harassment safeguards, IDEA/Section 504 practices, and reporting access.'
+            THEN 'Review IDEA and Section 504 safeguards while ensuring reporting accessibility.'
         WHEN r.protected_category = 'Religion'
-            THEN 'Review religion-based harassment cases, reporting completeness, and prevention support.'
-        ELSE 'Continue monitoring.'
+            THEN 'Review religion-based incidents, validate reporting completeness, and strengthen inclusion initiatives.'
+        ELSE
+            'Continue monitoring reporting trends.'
     END AS category_action_item,
-
+    CASE
+        WHEN sm.state_rank <= 5 THEN '🚨 National hotspot. '
+        WHEN sm.state_rank <= 10 THEN '⚠️ High national concern. '
+        WHEN sm.state_rank <= 20 THEN '📊 Elevated reporting. '
+        ELSE '✅ Routine monitoring. '
+    END
+    ||
+    CASE
+        WHEN r.protected_category = 'Sex'
+            THEN 'Focus: Sex-based harassment.'
+        WHEN r.protected_category = 'Race'
+            THEN 'Focus: Race-based harassment.'
+        WHEN r.protected_category = 'Sexual Orientation'
+            THEN 'Focus: Sexual orientation harassment.'
+        WHEN r.protected_category = 'Disability'
+            THEN 'Focus: Disability-related harassment.'
+        WHEN r.protected_category = 'Religion'
+            THEN 'Focus: Religion-based harassment.'
+        ELSE
+            'Continue monitoring.'
+    END AS category_action_summary,
     CONCAT(
         CASE
             WHEN r.category_rank = 1 THEN '🥇 '
@@ -982,22 +1072,38 @@ SELECT
         TO_CHAR(r.category_allegations, 'FM999,999,999'),
         ' reports | ',
         CASE
+            WHEN sm.state_rank <= 5 THEN '🚨 National hotspot: '
+            WHEN sm.state_rank <= 10 THEN '⚠️ High national concern: '
+            WHEN sm.state_rank <= 20 THEN '📊 Elevated reporting: '
+            ELSE ''
+        END,
+        CASE
             WHEN r.protected_category = 'Sex'
-                THEN 'Review sex-based harassment prevention and response consistency.'
+                THEN 'Strengthen prevention, reporting channels, and response consistency.'
             WHEN r.protected_category = 'Race'
-                THEN 'Review racial harassment patterns and targeted prevention support.'
+                THEN 'Prioritize anti-bias prevention and district equity review.'
             WHEN r.protected_category = 'Sexual Orientation'
-                THEN 'Review inclusive climate practices and LGBTQ+ student support.'
+                THEN 'Strengthen inclusive climate practices and LGBTQ+ student support.'
             WHEN r.protected_category = 'Disability'
-                THEN 'Review IDEA/Section 504 safeguards and reporting access.'
+                THEN 'Review IDEA and Section 504 safeguards and reporting accessibility.'
             WHEN r.protected_category = 'Religion'
-                THEN 'Review religion-based harassment cases and reporting completeness.'
-            ELSE 'Continue monitoring.'
+                THEN 'Validate reporting completeness and review inclusion initiatives.'
+            ELSE
+                'Continue monitoring.'
         END
     ) AS action_matrix_text
-
 FROM ranked r
 LEFT JOIN state_metrics sm
     ON r.state = sm.state
 WHERE r.category_rank <= 3
-ORDER BY r.state, r.category_rank;
+ORDER BY
+    state_sort_score DESC,
+    r.state,
+    r.category_rank;
+
+
+---- Validation ----
+SELECT *
+FROM s_yoldaserdem.vw_state_action_matrix
+ORDER BY state_sort_score DESC, state, category_rank
+LIMIT 30;
