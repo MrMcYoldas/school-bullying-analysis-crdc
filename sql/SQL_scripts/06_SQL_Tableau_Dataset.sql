@@ -676,3 +676,328 @@ ORDER BY
         ELSE 5
     END,
     allegations_per_school DESC;
+
+------------------------------------------------------
+-- CRDC BULLYING DASHBOARD
+-- View: vw_state_demographic_heatmap
+-- Purpose: Demographic analysis of reported bullying
+-- by state, protected harassment category,
+-- student group, gender, reported students,
+-- and disciplinary actions.
+------------------------------------------------------
+-- Visualization:
+-- Demographic Bullying Hotspots by State (Heatmap)
+------------------------------------------------------
+
+DROP VIEW IF EXISTS s_yoldaserdem.vw_state_demographic_heatmap;
+
+
+CREATE VIEW s_yoldaserdem.vw_state_demographic_heatmap AS
+
+-- SEX-BASED HARASSMENT
+SELECT state, 'Sex' AS protected_category, 'Hispanic' AS student_group, 'Male' AS gender, 1 AS display_order,
+       SUM(COALESCE(reported_sex_hispanic_male,0)) AS students_reported_as_affected,
+       SUM(COALESCE(disciplined_sex_hispanic_male,0)) AS students_disciplined
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Hispanic', 'Female', 1,
+       SUM(COALESCE(reported_sex_hispanic_female,0)),
+       SUM(COALESCE(disciplined_sex_hispanic_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'American Indian / Alaska Native', 'Male', 2,
+       SUM(COALESCE(reported_sex_american_indian_male,0)),
+       SUM(COALESCE(disciplined_sex_american_indian_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'American Indian / Alaska Native', 'Female', 2,
+       SUM(COALESCE(reported_sex_american_indian_female,0)),
+       SUM(COALESCE(disciplined_sex_american_indian_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Asian', 'Male', 3,
+       SUM(COALESCE(reported_sex_asian_male,0)),
+       SUM(COALESCE(disciplined_sex_asian_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Asian', 'Female', 3,
+       SUM(COALESCE(reported_sex_asian_female,0)),
+       SUM(COALESCE(disciplined_sex_asian_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Pacific Islander', 'Male', 4,
+       SUM(COALESCE(reported_sex_pacific_islander_male,0)),
+       SUM(COALESCE(disciplined_sex_pacific_islander_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Pacific Islander', 'Female', 4,
+       SUM(COALESCE(reported_sex_pacific_islander_female,0)),
+       SUM(COALESCE(disciplined_sex_pacific_islander_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Black', 'Male', 5,
+       SUM(COALESCE(reported_sex_black_male,0)),
+       SUM(COALESCE(disciplined_sex_black_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Black', 'Female', 5,
+       SUM(COALESCE(reported_sex_black_female,0)),
+       SUM(COALESCE(disciplined_sex_black_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'White', 'Male', 6,
+       SUM(COALESCE(reported_sex_white_male,0)),
+       SUM(COALESCE(disciplined_sex_white_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'White', 'Female', 6,
+       SUM(COALESCE(reported_sex_white_female,0)),
+       SUM(COALESCE(disciplined_sex_white_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Multi-Race', 'Male', 7,
+       SUM(COALESCE(reported_sex_multi_race_male,0)),
+       SUM(COALESCE(disciplined_sex_multi_race_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Multi-Race', 'Female', 7,
+       SUM(COALESCE(reported_sex_multi_race_female,0)),
+       SUM(COALESCE(disciplined_sex_multi_race_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'English Learner', 'Male', 8,
+       SUM(COALESCE(reported_sex_english_learner_male,0)),
+       SUM(COALESCE(disciplined_sex_english_learner_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'English Learner', 'Female', 8,
+       SUM(COALESCE(reported_sex_english_learner_female,0)),
+       SUM(COALESCE(disciplined_sex_english_learner_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'IDEA', 'Male', 9,
+       SUM(COALESCE(reported_sex_idea_male,0)),
+       SUM(COALESCE(disciplined_sex_idea_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'IDEA', 'Female', 9,
+       SUM(COALESCE(reported_sex_idea_female,0)),
+       SUM(COALESCE(disciplined_sex_idea_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Section 504', 'Male', 10,
+       SUM(COALESCE(reported_sex_section_504_male,0)),
+       SUM(COALESCE(disciplined_sex_section_504_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Sex', 'Section 504', 'Female', 10,
+       SUM(COALESCE(reported_sex_section_504_female,0)),
+       SUM(COALESCE(disciplined_sex_section_504_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+
+-- RACE-BASED HARASSMENT
+UNION ALL
+SELECT state, 'Race', 'Hispanic', 'Male', 1,
+       SUM(COALESCE(reported_race_hispanic_male,0)),
+       SUM(COALESCE(disciplined_race_hispanic_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Hispanic', 'Female', 1,
+       SUM(COALESCE(reported_race_hispanic_female,0)),
+       SUM(COALESCE(disciplined_race_hispanic_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Black', 'Male', 2,
+       SUM(COALESCE(reported_race_black_male,0)),
+       SUM(COALESCE(disciplined_race_black_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Black', 'Female', 2,
+       SUM(COALESCE(reported_race_black_female,0)),
+       SUM(COALESCE(disciplined_race_black_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'White', 'Male', 3,
+       SUM(COALESCE(reported_race_white_male,0)),
+       SUM(COALESCE(disciplined_race_white_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'White', 'Female', 3,
+       SUM(COALESCE(reported_race_white_female,0)),
+       SUM(COALESCE(disciplined_race_white_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Asian', 'Male', 4,
+       SUM(COALESCE(reported_race_asian_male,0)),
+       SUM(COALESCE(disciplined_race_asian_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Asian', 'Female', 4,
+       SUM(COALESCE(reported_race_asian_female,0)),
+       SUM(COALESCE(disciplined_race_asian_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'American Indian / Alaska Native', 'Male', 5,
+       SUM(COALESCE(reported_race_american_indian_male,0)),
+       SUM(COALESCE(disciplined_race_american_indian_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'American Indian / Alaska Native', 'Female', 5,
+       SUM(COALESCE(reported_race_american_indian_female,0)),
+       SUM(COALESCE(disciplined_race_american_indian_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Pacific Islander', 'Male', 6,
+       SUM(COALESCE(reported_race_pacific_islander_male,0)),
+       SUM(COALESCE(disciplined_race_pacific_islander_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Pacific Islander', 'Female', 6,
+       SUM(COALESCE(reported_race_pacific_islander_female,0)),
+       SUM(COALESCE(disciplined_race_pacific_islander_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Multi-Race', 'Male', 7,
+       SUM(COALESCE(reported_race_multi_race_male,0)),
+       SUM(COALESCE(disciplined_race_multi_race_male,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state
+UNION ALL
+SELECT state, 'Race', 'Multi-Race', 'Female', 7,
+       SUM(COALESCE(reported_race_multi_race_female,0)),
+       SUM(COALESCE(disciplined_race_multi_race_female,0))
+FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state;
+
+------------------------------------------------------
+-- CRDC BULLYING DASHBOARD
+-- View: vw_state_action_matrix
+-- Purpose: State-level executive action matrix showing
+-- each state's top three protected harassment categories,
+-- reporting volume, priority level, and category-specific
+-- recommended action.
+------------------------------------------------------
+-- Visualization:
+-- State Priority Action Matrix
+------------------------------------------------------
+
+DROP VIEW IF EXISTS s_yoldaserdem.vw_state_action_matrix;
+
+CREATE VIEW s_yoldaserdem.vw_state_action_matrix AS
+
+WITH category_long AS (
+    SELECT state, 'Sex' AS protected_category, SUM(COALESCE(allegation_sex, 0)) AS category_allegations
+    FROM s_yoldaserdem.crdc_bullying_clean
+    GROUP BY state
+
+    UNION ALL
+    SELECT state, 'Race', SUM(COALESCE(allegation_race, 0))
+    FROM s_yoldaserdem.crdc_bullying_clean
+    GROUP BY state
+
+    UNION ALL
+    SELECT state, 'Sexual Orientation', SUM(COALESCE(allegation_orientation, 0))
+    FROM s_yoldaserdem.crdc_bullying_clean
+    GROUP BY state
+
+    UNION ALL
+    SELECT state, 'Disability', SUM(COALESCE(allegation_disability, 0))
+    FROM s_yoldaserdem.crdc_bullying_clean
+    GROUP BY state
+
+    UNION ALL
+    SELECT state, 'Religion', SUM(COALESCE(allegation_religion, 0))
+    FROM s_yoldaserdem.crdc_bullying_clean
+    GROUP BY state
+),
+
+ranked AS (
+    SELECT
+        state,
+        protected_category,
+        category_allegations,
+        ROW_NUMBER() OVER (
+            PARTITION BY state
+            ORDER BY category_allegations DESC
+        ) AS category_rank
+    FROM category_long
+),
+
+state_metrics AS (
+    SELECT
+        state,
+        total_main_allegations,
+        allegations_per_school AS normalized_reporting_rate,
+        schools_with_allegations,
+        students_reported_as_affected,
+        students_disciplined,
+        discipline_to_allegation_ratio,
+        priority_level,
+        suggested_action
+    FROM s_yoldaserdem.vw_state_summary
+)
+
+SELECT
+    r.state,
+
+    CASE
+        WHEN r.category_rank = 1 THEN '🥇 Primary issue'
+        WHEN r.category_rank = 2 THEN '🥈 Secondary issue'
+        WHEN r.category_rank = 3 THEN '🥉 Third issue'
+    END AS issue_rank_label,
+
+    r.category_rank,
+    r.protected_category,
+    r.category_allegations,
+
+    sm.total_main_allegations,
+    sm.normalized_reporting_rate,
+    sm.schools_with_allegations,
+    sm.students_reported_as_affected,
+    sm.students_disciplined,
+    sm.discipline_to_allegation_ratio,
+    sm.priority_level,
+    sm.suggested_action,
+
+    CASE
+        WHEN r.protected_category = 'Sex'
+            THEN 'Review sex-based harassment prevention, reporting channels, and response consistency.'
+        WHEN r.protected_category = 'Race'
+            THEN 'Review racial harassment patterns, district equity practices, and targeted prevention support.'
+        WHEN r.protected_category = 'Sexual Orientation'
+            THEN 'Review inclusive school climate practices and support systems for LGBTQ+ students.'
+        WHEN r.protected_category = 'Disability'
+            THEN 'Review disability-related harassment safeguards, IDEA/Section 504 practices, and reporting access.'
+        WHEN r.protected_category = 'Religion'
+            THEN 'Review religion-based harassment cases, reporting completeness, and prevention support.'
+        ELSE 'Continue monitoring.'
+    END AS category_action_item,
+
+    CONCAT(
+        CASE
+            WHEN r.category_rank = 1 THEN '🥇 '
+            WHEN r.category_rank = 2 THEN '🥈 '
+            WHEN r.category_rank = 3 THEN '🥉 '
+        END,
+        r.protected_category,
+        ' | ',
+        TO_CHAR(r.category_allegations, 'FM999,999,999'),
+        ' reports | ',
+        CASE
+            WHEN r.protected_category = 'Sex'
+                THEN 'Review sex-based harassment prevention and response consistency.'
+            WHEN r.protected_category = 'Race'
+                THEN 'Review racial harassment patterns and targeted prevention support.'
+            WHEN r.protected_category = 'Sexual Orientation'
+                THEN 'Review inclusive climate practices and LGBTQ+ student support.'
+            WHEN r.protected_category = 'Disability'
+                THEN 'Review IDEA/Section 504 safeguards and reporting access.'
+            WHEN r.protected_category = 'Religion'
+                THEN 'Review religion-based harassment cases and reporting completeness.'
+            ELSE 'Continue monitoring.'
+        END
+    ) AS action_matrix_text
+
+FROM ranked r
+LEFT JOIN state_metrics sm
+    ON r.state = sm.state
+WHERE r.category_rank <= 3
+ORDER BY r.state, r.category_rank;
