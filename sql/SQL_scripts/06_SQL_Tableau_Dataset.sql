@@ -98,10 +98,15 @@ FROM s_yoldaserdem.vw_dashboard_summary;
 -- Purpose:
 -- One row per state/jurisdiction for Tableau maps, rankings,
 -- state filters, priority levels, and executive tooltips.
+--
+-- Key thresholds:
+-- High priority: allegations per school >= 2.00
+-- Medium priority: allegations per school >= 1.00
+-- Response review: discipline-to-allegation ratio < 0.60
+-- ============================================================
 
-DROP VIEW IF EXISTS s_yoldaserdem.vw_state_summary;
+CREATE OR REPLACE VIEW s_yoldaserdem.vw_state_summary AS
 
-CREATE VIEW s_yoldaserdem.vw_state_summary AS
 WITH state_base AS (
     SELECT
         state,
@@ -119,45 +124,88 @@ WITH state_base AS (
         + COALESCE(allegation_race, 0)
         + COALESCE(allegation_orientation, 0)
         + COALESCE(allegation_disability, 0)
-        + COALESCE(allegation_religion, 0) AS total_main_allegations,
+        + COALESCE(allegation_religion, 0)
+            AS total_main_allegations,
 
         COALESCE(total_reported_sex_male, 0)
         + COALESCE(total_reported_sex_female, 0)
         + COALESCE(total_reported_race_male, 0)
         + COALESCE(total_reported_race_female, 0)
         + COALESCE(total_reported_disability_male, 0)
-        + COALESCE(total_reported_disability_female, 0) AS students_reported_as_affected,
+        + COALESCE(total_reported_disability_female, 0)
+            AS students_reported_as_affected,
 
         COALESCE(total_disciplined_sex_male, 0)
         + COALESCE(total_disciplined_sex_female, 0)
         + COALESCE(total_disciplined_race_male, 0)
         + COALESCE(total_disciplined_race_female, 0)
         + COALESCE(total_disciplined_disability_male, 0)
-        + COALESCE(total_disciplined_disability_female, 0) AS students_disciplined
+        + COALESCE(total_disciplined_disability_female, 0)
+            AS students_disciplined
+
     FROM s_yoldaserdem.crdc_bullying_clean
 ),
+
 state_summary AS (
     SELECT
         state,
+
         COUNT(*) AS school_records,
         COUNT(DISTINCT district_id) AS school_districts,
-        SUM(CASE WHEN juvenile_justice_school = 'Yes' THEN 1 ELSE 0 END) AS juvenile_justice_schools,
+
+        SUM(
+            CASE
+                WHEN juvenile_justice_school = 'Yes' THEN 1
+                ELSE 0
+            END
+        ) AS juvenile_justice_schools,
 
         SUM(total_main_allegations) AS total_main_allegations,
-        ROUND(SUM(total_main_allegations) * 1.0 / COUNT(*), 2) AS allegations_per_school,
 
-        SUM(CASE WHEN total_main_allegations > 0 THEN 1 ELSE 0 END) AS schools_with_allegations,
-        SUM(CASE WHEN total_main_allegations = 0 THEN 1 ELSE 0 END) AS schools_without_allegations,
+        -- Average reported allegations across all school records.
+        -- Stored with six decimal places to preserve very small values.
         ROUND(
-            SUM(CASE WHEN total_main_allegations > 0 THEN 1 ELSE 0 END) * 100.0 / COUNT(*),
+            SUM(total_main_allegations)::NUMERIC
+            / NULLIF(COUNT(*), 0),
+            6
+        ) AS allegations_per_school,
+
+        SUM(
+            CASE
+                WHEN total_main_allegations > 0 THEN 1
+                ELSE 0
+            END
+        ) AS schools_with_allegations,
+
+        SUM(
+            CASE
+                WHEN total_main_allegations = 0 THEN 1
+                ELSE 0
+            END
+        ) AS schools_without_allegations,
+
+        ROUND(
+            SUM(
+                CASE
+                    WHEN total_main_allegations > 0 THEN 1
+                    ELSE 0
+                END
+            )::NUMERIC
+            * 100
+            / NULLIF(COUNT(*), 0),
             2
         ) AS schools_with_allegations_pct,
 
-        SUM(students_reported_as_affected) AS students_reported_as_affected,
-        SUM(students_disciplined) AS students_disciplined,
+        SUM(students_reported_as_affected)
+            AS students_reported_as_affected,
+
+        SUM(students_disciplined)
+            AS students_disciplined,
+
         ROUND(
-            SUM(students_disciplined) * 1.0 / NULLIF(SUM(total_main_allegations), 0),
-            2
+            SUM(students_disciplined)::NUMERIC
+            / NULLIF(SUM(total_main_allegations), 0),
+            3
         ) AS discipline_to_allegation_ratio,
 
         SUM(allegation_sex) AS sex_allegations,
@@ -165,9 +213,11 @@ state_summary AS (
         SUM(allegation_orientation) AS orientation_allegations,
         SUM(allegation_disability) AS disability_allegations,
         SUM(allegation_religion) AS religion_allegations
+
     FROM state_base
     GROUP BY state
 )
+
 SELECT
     state,
     school_records,
@@ -188,34 +238,74 @@ SELECT
     religion_allegations,
 
     CASE
-        WHEN total_main_allegations = 0 THEN 'No reported allegations'
-        WHEN allegations_per_school >= 2.00 THEN 'High priority'
-        WHEN allegations_per_school >= 1.00 THEN 'Medium priority'
+        WHEN total_main_allegations = 0
+            THEN 'No reported allegations'
+
+        WHEN allegations_per_school >= 2.00
+            THEN 'High priority'
+
+        WHEN allegations_per_school >= 1.00
+            THEN 'Medium priority'
+
         ELSE 'Routine monitoring'
     END AS priority_level,
 
     CASE
         WHEN total_main_allegations = 0
-            THEN 'Review reporting completeness and continue routine monitoring.'
+            THEN
+                'Review reporting completeness and continue routine monitoring.'
+
         WHEN allegations_per_school >= 2.00
-             AND discipline_to_allegation_ratio < 0.75
-            THEN 'Prioritize prevention support and review response consistency.'
+             AND discipline_to_allegation_ratio < 0.60
+            THEN
+                'Prioritize prevention support and review response consistency.'
+
         WHEN allegations_per_school >= 2.00
-            THEN 'Prioritize targeted prevention and monitoring resources.'
-        WHEN discipline_to_allegation_ratio < 0.75
-            THEN 'Review whether disciplinary responses are consistently documented.'
+            THEN
+                'Prioritize targeted prevention and monitoring resources.'
+
+        WHEN discipline_to_allegation_ratio < 0.60
+            THEN
+                'Review whether disciplinary responses are consistently documented.'
+
         WHEN allegations_per_school >= 1.00
-            THEN 'Monitor trends and compare patterns across districts.'
-        ELSE 'Continue routine monitoring.'
+            THEN
+                'Monitor trends and compare patterns across districts.'
+
+        ELSE
+            'Continue routine monitoring.'
     END AS suggested_action
+
 FROM state_summary;
 
 
--- Validation
+-- ============================================================
+-- Validation 1: General output
+-- ============================================================
+
 SELECT *
 FROM s_yoldaserdem.vw_state_summary
 ORDER BY total_main_allegations DESC
 LIMIT 10;
+
+
+-- ============================================================
+-- Validation 2: North Carolina precision check
+-- Expected allegations_per_school:
+-- 2 / 2,722 = approximately 0.000735
+-- ============================================================
+
+SELECT
+    state,
+    school_records,
+    total_main_allegations,
+    schools_with_allegations,
+    allegations_per_school,
+    discipline_to_allegation_ratio,
+    priority_level,
+    suggested_action
+FROM s_yoldaserdem.vw_state_summary
+WHERE state = 'NORTH CAROLINA';
 
 -- ============================================================
 -- 3. Category Summary View
@@ -625,11 +715,11 @@ SELECT
 
     CASE
         WHEN allegations_per_school >= 2
-             AND discipline_to_allegation_ratio < 0.75
+             AND discipline_to_allegation_ratio < 0.60
             THEN 'Highest Priority'
         WHEN allegations_per_school >= 2
             THEN 'High Priority'
-        WHEN discipline_to_allegation_ratio < 0.75
+        WHEN discipline_to_allegation_ratio < 0.60
             THEN 'Response Review'
         WHEN schools_with_allegations_pct >= 40
             THEN 'High Reporting Coverage'
@@ -638,11 +728,11 @@ SELECT
 
     CASE
         WHEN allegations_per_school >= 2
-             AND discipline_to_allegation_ratio < 0.75
+             AND discipline_to_allegation_ratio < 0.60
             THEN 'High allegation intensity combined with comparatively low disciplinary response. Prioritize prevention support and review response consistency.'
         WHEN allegations_per_school >= 2
             THEN 'High allegation intensity. Investigate drivers of elevated reporting and consider targeted prevention resources.'
-        WHEN discipline_to_allegation_ratio < 0.75
+        WHEN discipline_to_allegation_ratio < 0.60
             THEN 'Disciplinary response ratio is comparatively low. Review whether response practices are consistently documented.'
         WHEN schools_with_allegations_pct >= 40
             THEN 'Large share of schools report allegations. Monitor reporting patterns and compare district-level variation.'
@@ -654,9 +744,9 @@ FROM metrics
 ORDER BY
     CASE
         WHEN allegations_per_school >= 2
-             AND discipline_to_allegation_ratio < 0.75 THEN 1
+             AND discipline_to_allegation_ratio < 0.60 THEN 1
         WHEN allegations_per_school >= 2 THEN 2
-        WHEN discipline_to_allegation_ratio < 0.75 THEN 3
+        WHEN discipline_to_allegation_ratio < 0.60 THEN 3
         WHEN schools_with_allegations_pct >= 40 THEN 4
         ELSE 5
     END,
@@ -885,7 +975,6 @@ FROM s_yoldaserdem.crdc_bullying_clean GROUP BY state;
 ------------------------------------------------------
 
 DROP VIEW IF EXISTS s_yoldaserdem.vw_state_action_matrix;
-
 CREATE VIEW s_yoldaserdem.vw_state_action_matrix AS
 WITH category_long AS (
     SELECT state, 'Sex' AS protected_category, SUM(COALESCE(allegation_sex, 0)) AS category_allegations
@@ -963,9 +1052,12 @@ SELECT
         ELSE '✅ Maintain Monitoring'
     END AS national_reporting_tier,
     CASE
-        WHEN r.category_rank = 1 THEN '🥇 Primary issue'
-        WHEN r.category_rank = 2 THEN '🥈 Secondary issue'
-        WHEN r.category_rank = 3 THEN '🥉 Third issue'
+        WHEN rc.total_main_allegations = 0 THEN 'No reported allegations'
+        WHEN rc.category_rank = 1 THEN '🥇 Primary Issue'
+        WHEN rc.category_rank = 2 THEN '🥈 Secondary Issue'
+        WHEN rc.category_rank = 3 THEN '🥉 Third Issue'
+        WHEN rc.category_rank = 4 THEN '4th Issue'
+        ELSE '5th Issue'
     END AS issue_rank_label,
     r.category_rank,
     r.protected_category,
@@ -1091,7 +1183,7 @@ SELECT
             ELSE
                 'Continue monitoring.'
         END
-    ) AS action_matrix_text
+    ) AS category_summary
 FROM ranked r
 LEFT JOIN state_metrics sm
     ON r.state = sm.state
@@ -1106,4 +1198,291 @@ ORDER BY
 SELECT *
 FROM s_yoldaserdem.vw_state_action_matrix
 ORDER BY state_sort_score DESC, state, category_rank
+LIMIT 30;
+
+-- ============================================================
+-- CRDC BULLYING DASHBOARD
+-- View: vw_school_hotspot_matrix
+-- ============================================================
+-- Purpose:
+-- Creates a school-level protected-category matrix for Tableau.
+--
+-- Grain:
+-- One row per school and protected harassment category.
+--
+-- Intended visualization:
+-- School Reporting Hotspots Heatmap
+--
+-- Tableau structure:
+-- Rows:
+--   State
+--   District ID
+--   School Label
+--
+-- Columns:
+--   Protected Category
+--
+-- Color / Text:
+--   Category Allegations
+--
+-- Recommended filters:
+--   State
+--   District ID
+--   School Label
+--   Protected Category
+--   State Priority Level
+--
+-- Important methodology note:
+-- At state level, Normalized Reporting Rate is calculated as:
+-- Total Main Allegations / School Records.
+--
+-- At school level, each row already represents one school.
+-- Therefore:
+-- School Allegations / 1 = School Total Allegations.
+--
+-- No new school normalization KPI is introduced.
+-- ============================================================
+
+CREATE OR REPLACE VIEW s_yoldaserdem.vw_school_hotspot_matrix AS
+WITH school_base AS (
+    SELECT
+        state,
+        district_id,
+        school_key,
+        juvenile_justice_school,
+
+        -- Creates a readable identifier when no school-name field
+        -- is available in the cleaned dataset.
+        CONCAT(
+            state,
+            ' | District ',
+            district_id,
+            ' | School ',
+            school_key
+        ) AS school_label,
+        COALESCE(allegation_sex, 0) AS allegation_sex,
+        COALESCE(allegation_race, 0) AS allegation_race,
+        COALESCE(allegation_orientation, 0) AS allegation_orientation,
+        COALESCE(allegation_disability, 0) AS allegation_disability,
+        COALESCE(allegation_religion, 0) AS allegation_religion,
+        COALESCE(allegation_sex, 0)
+        + COALESCE(allegation_race, 0)
+        + COALESCE(allegation_orientation, 0)
+        + COALESCE(allegation_disability, 0)
+        + COALESCE(allegation_religion, 0)
+            AS total_main_allegations,
+        COALESCE(total_reported_sex_male, 0)
+        + COALESCE(total_reported_sex_female, 0)
+        + COALESCE(total_reported_race_male, 0)
+        + COALESCE(total_reported_race_female, 0)
+        + COALESCE(total_reported_disability_male, 0)
+        + COALESCE(total_reported_disability_female, 0)
+            AS students_reported_as_affected,
+        COALESCE(total_disciplined_sex_male, 0)
+        + COALESCE(total_disciplined_sex_female, 0)
+        + COALESCE(total_disciplined_race_male, 0)
+        + COALESCE(total_disciplined_race_female, 0)
+        + COALESCE(total_disciplined_disability_male, 0)
+        + COALESCE(total_disciplined_disability_female, 0)
+            AS students_disciplined
+    FROM s_yoldaserdem.crdc_bullying_clean
+),
+school_metrics AS (
+    SELECT
+        state,
+        district_id,
+        school_key,
+        school_label,
+        juvenile_justice_school,
+        total_main_allegations,
+        -- At school grain this is mathematically identical
+        -- to Total Main Allegations because the denominator is one school.
+        total_main_allegations::NUMERIC
+            AS school_reporting_rate,
+        students_reported_as_affected,
+        students_disciplined,
+        ROUND(
+            students_disciplined::NUMERIC
+            / NULLIF(total_main_allegations, 0),
+            3
+        ) AS discipline_to_allegation_ratio,
+        allegation_sex,
+        allegation_race,
+        allegation_orientation,
+        allegation_disability,
+        allegation_religion
+    FROM school_base
+),
+category_long AS (
+    SELECT
+        sm.state,
+        sm.district_id,
+        sm.school_key,
+        sm.school_label,
+        sm.juvenile_justice_school,
+        sm.total_main_allegations,
+        sm.school_reporting_rate,
+        sm.students_reported_as_affected,
+        sm.students_disciplined,
+        sm.discipline_to_allegation_ratio,
+        category_values.protected_category,
+        category_values.category_allegations
+    FROM school_metrics sm
+    CROSS JOIN LATERAL (
+        VALUES
+            ('Sex', sm.allegation_sex),
+            ('Race', sm.allegation_race),
+            ('Sexual Orientation', sm.allegation_orientation),
+            ('Disability', sm.allegation_disability),
+            ('Religion', sm.allegation_religion)
+    ) AS category_values (
+        protected_category,
+        category_allegations
+    )
+),
+ranked_categories AS (
+    SELECT
+        cl.*,
+        ROW_NUMBER() OVER (
+            PARTITION BY
+                cl.state,
+                cl.district_id,
+                cl.school_key
+            ORDER BY
+                cl.category_allegations DESC,
+                cl.protected_category
+        ) AS category_rank,
+
+        SUM(cl.category_allegations) OVER (
+            PARTITION BY
+                cl.state,
+                cl.district_id,
+                cl.school_key
+        ) AS school_category_total
+    FROM category_long cl
+),
+state_context AS (
+    SELECT
+        state,
+        allegations_per_school
+            AS state_normalized_reporting_rate,
+        priority_level
+            AS state_priority_level,
+        suggested_action
+            AS state_suggested_action
+    FROM s_yoldaserdem.vw_state_summary
+)
+SELECT
+    rc.state,
+    rc.district_id,
+    rc.school_key,
+    rc.school_label,
+    rc.juvenile_justice_school,
+    -- Useful filters
+    rc.state AS state_filter_value,
+    rc.district_id AS district_filter_value,
+    rc.school_label AS school_filter_value,
+    rc.protected_category,
+    rc.category_allegations,
+    rc.category_rank,
+CASE
+    WHEN rc.total_main_allegations = 0
+        THEN 'No reported allegations'
+    WHEN rc.category_rank = 1
+        THEN '🥇 Primary issue'
+    WHEN rc.category_rank = 2
+        THEN '🥈 Secondary issue'
+    WHEN rc.category_rank = 3
+        THEN '🥉 Third issue'
+    WHEN rc.category_rank = 4
+        THEN 'Fourth issue'
+    ELSE
+        'Fifth issue'
+END AS issue_rank_label,
+    rc.total_main_allegations,
+    rc.school_reporting_rate,
+    rc.students_reported_as_affected,
+    rc.students_disciplined,
+    rc.discipline_to_allegation_ratio,
+    sc.state_normalized_reporting_rate,
+    sc.state_priority_level,
+    sc.state_suggested_action,
+    ROUND(
+     	  rc.category_allegations::NUMERIC
+        * 100
+        / NULLIF(rc.school_category_total, 0),
+        2
+    ) AS category_share_pct,
+    CASE
+        WHEN rc.protected_category = 'Sex'
+            THEN 'Review sex-based harassment prevention, reporting channels, and response consistency.'
+        WHEN rc.protected_category = 'Race'
+            THEN 'Review race-based harassment patterns and strengthen targeted anti-bias prevention.'
+        WHEN rc.protected_category = 'Sexual Orientation'
+            THEN 'Review inclusive climate practices, safe reporting channels, and LGBTQ+ student support.'
+        WHEN rc.protected_category = 'Disability'
+            THEN 'Review IDEA and Section 504 safeguards and ensure reporting processes are accessible.'
+        WHEN rc.protected_category = 'Religion'
+            THEN 'Review religion-based incidents, reporting completeness, and inclusion initiatives.'
+        ELSE 'Continue monitoring reporting patterns.'
+    END AS category_action_item,
+    CONCAT(
+        CASE
+        WHEN rc.total_main_allegations = 0
+            THEN ''
+        WHEN rc.category_rank = 1 THEN '🥇 '
+        WHEN rc.category_rank = 2 THEN '🥈 '
+        WHEN rc.category_rank = 3 THEN '🥉 '
+        WHEN rc.category_rank = 4 THEN '4. '
+        WHEN rc.category_rank = 5 THEN '5. '
+    ELSE ''
+        END,
+        rc.protected_category,
+        ' | ',
+        TO_CHAR(
+            rc.category_allegations,
+            'FM999,999,999'
+        ),
+        ' reports'
+    ) AS school_matrix_text
+FROM ranked_categories rc
+LEFT JOIN state_context sc
+    ON rc.state = sc.state;
+
+
+    ------
+    -- General output check
+SELECT *
+FROM s_yoldaserdem.vw_school_hotspot_matrix
+LIMIT 50;
+
+----
+
+-- Check row grain:
+-- each school should normally have five category rows
+SELECT
+    state,
+    district_id,
+    school_key,
+    COUNT(*) AS category_rows
+FROM s_yoldaserdem.vw_school_hotspot_matrix
+GROUP BY
+    state,
+    district_id,
+    school_key
+HAVING COUNT(*) <> 5;
+
+------ Inspect schools with the highest total allegation count
+SELECT DISTINCT
+    state,
+    district_id,
+    school_key,
+    school_label,
+    total_main_allegations,
+    students_reported_as_affected,
+    students_disciplined,
+    discipline_to_allegation_ratio,
+    state_priority_level
+FROM s_yoldaserdem.vw_school_hotspot_matrix
+ORDER BY total_main_allegations DESC
 LIMIT 30;
