@@ -109,7 +109,7 @@ The project uses a layered analytical architecture:
 5. **Classification layer** — project-defined priority thresholds, relative rankings, and within-state category order.
 6. **Tableau output** — interactive oversight, investigation, and action dashboards.
 
-![Figure 1. Data Architecture & Metric Construction](documentation/Images/data-architecture-metric-construction.png)
+![Figure 1. Data Architecture & Metric Construction](documentation/images/data-architecture-metric-construction.png)
 
 _Figure 1. Data Architecture & Metric Construction._
 
@@ -303,7 +303,7 @@ For example, if an illustrative state reports:
 
 Issue Rank describes category order. It does not establish prevalence, severity, or causality. Categories with zero allegations display as **No reported allegations** rather than being presented as an active issue.
 
-![Figure 2. Priority, Ranking & Action Logic](documentation/Images/priority-ranking-action-logic.png)
+![Figure 2. Priority, Ranking & Action Logic](documentation/images/priority-ranking-action-logic.png)
 
 _Figure 2. Priority, Ranking & Action Logic._
 
@@ -375,7 +375,7 @@ The tooltips preserve detail without overcrowding the visualizations. Depending 
 - recommended follow-up;
 - interpretation and methodology notes.
 
-![Figure 3. Dashboard Field & KPI Reference](documentation/Images/dashboard-field-kpi-reference.png)
+![Figure 3. Dashboard Field & KPI Reference](documentation/images/dashboard-field-kpi-reference.png)
 
 _Figure 3. Dashboard Field & KPI Reference._
 
@@ -469,7 +469,7 @@ School_Bullying_Capstone/
 ├── sql/
 ├── tableau/
 ├── documentation/
-│   ├── Images/
+│   ├── images/
 │   ├── appendix/
 │   └── reports/
 ├── presentation/
