@@ -41,6 +41,12 @@ sql/Beaver exports/**
 *.dbeaver-data-sources.xml
 
 # ==========================
+# Tableau (keep workbooks local)
+# ==========================
+tableau/
+*.twbr
+
+# ==========================
 # Personal files
 # ==========================
 *.numbers
