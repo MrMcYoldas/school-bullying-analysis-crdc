@@ -29,7 +29,7 @@
 | 🖥️  | [Dashboard workflow](#dashboard-workflow)     | State → school → context → action       |
 | 🔎  | [Key findings](#key-findings)                 | Main analytical observations            |
 | ⚠️  | [Limitations](#limitations)                   | Reporting caveats and responsible use   |
-| 📚  | [Documentation](#documentation)               | README, appendix, and KPI reference     |
+| 📚  | [Documentation](#documentation)               | README, report, and visual references   |
 
 ## ✨ Project at a glance
 
@@ -130,11 +130,14 @@ Tableau is then used primarily for visualization, filtering, parameters, tooltip
 
 <a id="dataset"></a>
 
-## 🗃️ Dataset
+## 🗃️ Dataset & official CRDC source
 
-**Source:** U.S. Department of Education, Office for Civil Rights  
+**Source:** [U.S. Department of Education — Civil Rights Data Collection](https://civilrightsdata.ed.gov/data)
+
 **Collection:** Civil Rights Data Collection (CRDC) 2021–22  
 **Unit of analysis:** Administrative school-level records
+
+The official CRDC data downloads, file documentation, and supporting reference materials are available from the source page above. They are linked rather than duplicated in this repository.
 
 ### 📌 Project data scope
 
@@ -468,7 +471,7 @@ School_Bullying_Capstone/
 ├── documentation/
 │   ├── Images/
 │   ├── appendix/
-│   └── reference/
+│   └── reports/
 ├── presentation/
 └── README.md
 ```
@@ -484,8 +487,10 @@ The original CRDC source dataset is not included in the repository. Download it 
 The final documentation is organized into three complementary resources:
 
 1. **README** — project purpose, architecture, dashboard workflow, findings, and limitations.
-2. **Final Appendix / Reference Guide** — view names, field definitions, filters, parameters, tooltips, business rules, and interpretation guidance.
-3. **Final KPI & Metrics Reference** — formulas, aggregation level, business meaning, thresholds, and Action Matrix dependencies.
+2. **Final Analysis Report** — consolidated analytical narrative, methodology, findings, and limitations.
+3. **Appendix resources** — the project data dictionary and the original CRDC appendix workbook used during field selection.
+
+Official CRDC data and source documentation can be obtained from the [Civil Rights Data Collection data page](https://civilrightsdata.ed.gov/data).
 
 Supporting documentation graphics:
 
