@@ -1052,12 +1052,12 @@ SELECT
         ELSE '✅ Maintain Monitoring'
     END AS national_reporting_tier,
     CASE
-        WHEN rc.total_main_allegations = 0 THEN 'No reported allegations'
-        WHEN rc.category_rank = 1 THEN '🥇 Primary Issue'
-        WHEN rc.category_rank = 2 THEN '🥈 Secondary Issue'
-        WHEN rc.category_rank = 3 THEN '🥉 Third Issue'
-        WHEN rc.category_rank = 4 THEN '4th Issue'
-        ELSE '5th Issue'
+        WHEN rc.total_main_allegations = 0 THEN 'No allegations'
+        WHEN rc.category_rank = 1 THEN '🥇 '
+        WHEN rc.category_rank = 2 THEN '🥈 '
+        WHEN rc.category_rank = 3 THEN '🥉 '
+        WHEN rc.category_rank = 4 THEN '4. '
+        ELSE '5. '
     END AS issue_rank_label,
     r.category_rank,
     r.protected_category,
@@ -1429,7 +1429,7 @@ END AS issue_rank_label,
     CONCAT(
         CASE
         WHEN rc.total_main_allegations = 0
-            THEN ''
+            THEN 'No reported allegations'
         WHEN rc.category_rank = 1 THEN '🥇 '
         WHEN rc.category_rank = 2 THEN '🥈 '
         WHEN rc.category_rank = 3 THEN '🥉 '
