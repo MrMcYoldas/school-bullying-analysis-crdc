@@ -18,28 +18,29 @@
 
 ## 🧭 Quick navigation
 
-| | Section | What it covers |
-|---|---|---|
-| 🎯 | [Project purpose](#project-purpose) | Problem, analytical question, and scope |
-| 👥 | [Intended users](#intended-users) | State oversight and local follow-up |
-| 🏗️ | [Data architecture](#data-architecture) | CRDC → ETL → SQL → Tableau |
-| 🗃️ | [Dataset](#dataset) | Source, scope, and protected categories |
-| 📊 | [Core KPIs](#core-kpis) | Formulas, examples, and interpretation |
-| 🧭 | [Classification logic](#classification-logic) | Priority, national tier, and issue rank |
-| 🖥️ | [Dashboard workflow](#dashboard-workflow) | State → school → context → action |
-| 🔎 | [Key findings](#key-findings) | Main analytical observations |
-| ⚠️ | [Limitations](#limitations) | Reporting caveats and responsible use |
-| 📚 | [Documentation](#documentation) | README, appendix, and KPI reference |
+|     | Section                                       | What it covers                          |
+| --- | --------------------------------------------- | --------------------------------------- |
+| 🎯  | [Project purpose](#project-purpose)           | Problem, analytical question, and scope |
+| 👥  | [Intended users](#intended-users)             | State oversight and local follow-up     |
+| 🏗️  | [Data architecture](#data-architecture)       | CRDC → ETL → SQL → Tableau              |
+| 🗃️  | [Dataset](#dataset)                           | Source, scope, and protected categories |
+| 📊  | [Core KPIs](#core-kpis)                       | Formulas, examples, and interpretation  |
+| 🧭  | [Classification logic](#classification-logic) | Priority, national tier, and issue rank |
+| 🖥️  | [Dashboard workflow](#dashboard-workflow)     | State → school → context → action       |
+| 🔎  | [Key findings](#key-findings)                 | Main analytical observations            |
+| ⚠️  | [Limitations](#limitations)                   | Reporting caveats and responsible use   |
+| 📚  | [Documentation](#documentation)               | README, appendix, and KPI reference     |
 
 ## ✨ Project at a glance
 
-| 🏫 **98,010** | 🗂️ **159** | 🌎 **52** | 🏢 **17,704** | ⚖️ **882** |
-|:---:|:---:|:---:|:---:|:---:|
+| 🏫 **98,010**  |     🗂️ **159**     |   🌎 **52**   |  🏢 **17,704**   |        ⚖️ **882**        |
+| :------------: | :----------------: | :-----------: | :--------------: | :----------------------: |
 | School records | Original variables | Jurisdictions | School districts | Juvenile justice schools |
 
 ---
 
 <a id="project-purpose"></a>
+
 ## 🎯 Project purpose
 
 State education leaders oversee thousands of schools, but raw allegation totals alone do not show where attention should be focused. Larger jurisdictions naturally produce higher totals, administrative reporting practices differ, and higher reporting does not automatically indicate a less safe school environment.
@@ -61,6 +62,7 @@ The dashboard is designed to support screening, prioritization, and quality assu
 ---
 
 <a id="intended-users"></a>
+
 ## 👥 Intended users and operating model
 
 The primary audience is a **State Education Agency civil-rights, school-climate, student-support, accountability, or quality-assurance team**. Federal or national analysts may use the state comparisons as an oversight view, while district and school leaders provide the deeper local investigation.
@@ -95,6 +97,7 @@ The intended workflow is:
 ---
 
 <a id="data-architecture"></a>
+
 ## 🏗️ Data architecture and metric construction
 
 The project uses a layered analytical architecture:
@@ -108,7 +111,7 @@ The project uses a layered analytical architecture:
 
 ![Figure 1. Data Architecture & Metric Construction](documentation/Images/data-architecture-metric-construction.png)
 
-*Figure 1. Data Architecture & Metric Construction.*
+_Figure 1. Data Architecture & Metric Construction._
 
 ### 💾 Why use SQL views?
 
@@ -126,6 +129,7 @@ Tableau is then used primarily for visualization, filtering, parameters, tooltip
 ---
 
 <a id="dataset"></a>
+
 ## 🗃️ Dataset
 
 **Source:** U.S. Department of Education, Office for Civil Rights  
@@ -134,13 +138,13 @@ Tableau is then used primarily for visualization, filtering, parameters, tooltip
 
 ### 📌 Project data scope
 
-| Item | Scope |
-|---|---:|
-| School records | 98,010 |
-| Original variables | 159 |
-| State-level jurisdictions | 52 |
-| School districts | 17,704 |
-| Juvenile justice schools | 882 |
+| Item                      |  Scope |
+| ------------------------- | -----: |
+| School records            | 98,010 |
+| Original variables        |    159 |
+| State-level jurisdictions |     52 |
+| School districts          | 17,704 |
+| Juvenile justice schools  |    882 |
 
 The analytical scope includes:
 
@@ -194,31 +198,32 @@ Where `COALESCE` is used in an aggregate formula, it prevents SQL NULL propagati
 
 Each SQL view has a defined grain so measures are not unintentionally duplicated.
 
-| Analytical view | One row represents |
-|---|---|
-| State overview | One jurisdiction |
-| School hotspot matrix | One school and protected category |
-| Category analysis | One protected-category aggregate |
-| Demographic analysis | One state, category, student group, and gender combination |
-| Action matrix | One state and ranked protected category |
+| Analytical view       | One row represents                                         |
+| --------------------- | ---------------------------------------------------------- |
+| State overview        | One jurisdiction                                           |
+| School hotspot matrix | One school and protected category                          |
+| Category analysis     | One protected-category aggregate                           |
+| Demographic analysis  | One state, category, student group, and gender combination |
+| Action matrix         | One state and ranked protected category                    |
 
 Grain matters because a state-level measure repeated across category or demographic rows must not be summed as though every row contains a new state value. Pre-calculated contextual measures therefore use non-additive aggregations such as `MIN`, `MAX`, or `ATTR` when appropriate in Tableau.
 
 ---
 
 <a id="core-kpis"></a>
+
 ## 📊 Core KPIs
 
-| KPI | Construction | Business meaning |
-|---|---|---|
-| **Total Main Allegations** | Sum of Sex, Race, Sexual Orientation, Disability, and Religion allegations | Total administrative reporting volume across the five protected categories |
-| **Category Allegations** | Reported allegations for the selected category | Category-specific reporting volume |
-| **Normalized Reporting Rate** | Total Main Allegations ÷ School Records | Average reported allegations per school record; not a percentage |
-| **Category Share %** | Category Allegations ÷ Total Main Allegations × 100 | Contribution of a protected category to the total reported volume |
-| **Schools Reporting Allegations** | Count of schools where Total Main Allegations > 0 | Distribution of reported activity across schools |
-| **Students Reported as Affected** | Administrative affected-student count | Reported impact context; may contain overlapping counts |
-| **Students Disciplined** | Administrative disciplinary-action count | Separate administrative response population |
-| **Discipline-to-Allegation Ratio** | Students Disciplined ÷ Total Main Allegations | Response-context indicator; not a resolution or success rate |
+| KPI                                | Construction                                                               | Business meaning                                                           |
+| ---------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **Total Main Allegations**         | Sum of Sex, Race, Sexual Orientation, Disability, and Religion allegations | Total administrative reporting volume across the five protected categories |
+| **Category Allegations**           | Reported allegations for the selected category                             | Category-specific reporting volume                                         |
+| **Normalized Reporting Rate**      | Total Main Allegations ÷ School Records                                    | Average reported allegations per school record; not a percentage           |
+| **Category Share %**               | Category Allegations ÷ Total Main Allegations × 100                        | Contribution of a protected category to the total reported volume          |
+| **Schools Reporting Allegations**  | Count of schools where Total Main Allegations > 0                          | Distribution of reported activity across schools                           |
+| **Students Reported as Affected**  | Administrative affected-student count                                      | Reported impact context; may contain overlapping counts                    |
+| **Students Disciplined**           | Administrative disciplinary-action count                                   | Separate administrative response population                                |
+| **Discipline-to-Allegation Ratio** | Students Disciplined ÷ Total Main Allegations                              | Response-context indicator; not a resolution or success rate               |
 
 ### 🧮 Example: normalized reporting rate
 
@@ -243,6 +248,7 @@ This means the category represents 40% of the five-category allegation total. It
 ---
 
 <a id="classification-logic"></a>
+
 ## 🧭 Classification, ranking, and action logic
 
 The dashboard uses three complementary systems. Each answers a different question.
@@ -251,12 +257,12 @@ The dashboard uses three complementary systems. Each answers a different questio
 
 Priority Level compares the state Normalized Reporting Rate with project-defined review thresholds:
 
-| Priority Level | State normalized reporting rate |
-|---|---:|
-| High Priority | ≥ 2.00 allegations per school |
-| Medium Priority | 1.00–1.99 allegations per school |
-| Routine Monitoring | < 1.00 allegation per school |
-| No Reported Allegations | 0 |
+| Priority Level          |  State normalized reporting rate |
+| ----------------------- | -------------------------------: |
+| High Priority           |    ≥ 2.00 allegations per school |
+| Medium Priority         | 1.00–1.99 allegations per school |
+| Routine Monitoring      |     < 1.00 allegation per school |
+| No Reported Allegations |                                0 |
 
 These are capstone business rules created to translate a continuous metric into understandable monitoring categories. They are not official CRDC or government policy thresholds.
 
@@ -286,17 +292,17 @@ Issue Rank sorts protected categories by reported allegation volume inside each 
 
 For example, if an illustrative state reports:
 
-| Protected category | Allegations | Issue Rank |
-|---|---:|---|
-| Sex | 600 | Primary Issue |
-| Race | 400 | Secondary Issue |
-| Disability | 120 | Third Issue |
+| Protected category | Allegations | Issue Rank      |
+| ------------------ | ----------: | --------------- |
+| Sex                |         600 | Primary Issue   |
+| Race               |         400 | Secondary Issue |
+| Disability         |         120 | Third Issue     |
 
 Issue Rank describes category order. It does not establish prevalence, severity, or causality. Categories with zero allegations display as **No reported allegations** rather than being presented as an active issue.
 
 ![Figure 2. Priority, Ranking & Action Logic](documentation/Images/priority-ranking-action-logic.png)
 
-*Figure 2. Priority, Ranking & Action Logic.*
+_Figure 2. Priority, Ranking & Action Logic._
 
 ### 🎯 Action Matrix
 
@@ -315,6 +321,7 @@ The recommendation engine is **rule-based, not artificial intelligence or machin
 ---
 
 <a id="dashboard-workflow"></a>
+
 ## 🖥️ Tableau dashboard workflow
 
 ### Dashboard journey
@@ -367,11 +374,12 @@ The tooltips preserve detail without overcrowding the visualizations. Depending 
 
 ![Figure 3. Dashboard Field & KPI Reference](documentation/Images/dashboard-field-kpi-reference.png)
 
-*Figure 3. Dashboard Field & KPI Reference.*
+_Figure 3. Dashboard Field & KPI Reference._
 
 ---
 
 <a id="key-findings"></a>
+
 ## 🔎 Key findings
 
 The completed analysis indicates that:
@@ -389,6 +397,7 @@ The principal analytical contribution is not identifying which state or school i
 ---
 
 <a id="limitations"></a>
+
 ## ⚠️ Interpretation and limitations
 
 ### 📣 Administrative reporting is not confirmed prevalence
@@ -431,16 +440,16 @@ Questions involving age, grade, incident location, repeated involvement, complai
 
 ## 🛠️ Technology stack
 
-| Technology | Purpose |
-|---|---|
-| Python | Data preparation and validation |
-| Pandas | ETL and data transformation |
-| Jupyter Notebook | Exploration and pipeline development |
-| PostgreSQL | Analytical database and semantic layer |
-| SQL | Aggregation, reshaping, ranking, classifications, and recommendation rules |
-| DBeaver | Database development and validation |
-| Tableau | Interactive dashboards, filters, parameters, tooltips, and presentation story |
-| Git and GitHub | Version control and project documentation |
+| Technology       | Purpose                                                                       |
+| ---------------- | ----------------------------------------------------------------------------- |
+| Python           | Data preparation and validation                                               |
+| Pandas           | ETL and data transformation                                                   |
+| Jupyter Notebook | Exploration and pipeline development                                          |
+| PostgreSQL       | Analytical database and semantic layer                                        |
+| SQL              | Aggregation, reshaping, ranking, classifications, and recommendation rules    |
+| DBeaver          | Database development and validation                                           |
+| Tableau          | Interactive dashboards, filters, parameters, tooltips, and presentation story |
+| Git and GitHub   | Version control and project documentation                                     |
 
 ---
 
@@ -469,6 +478,7 @@ The original CRDC source dataset is not included in the repository. Download it 
 ---
 
 <a id="documentation"></a>
+
 ## 📚 Documentation package
 
 The final documentation is organized into three complementary resources:
@@ -487,18 +497,18 @@ Supporting documentation graphics:
 
 ## ✅ Project status
 
-| Phase | Status |
-|---|---|
-| Project structure | ✅ Completed |
-| Data exploration | ✅ Completed |
-| ETL and cleaning | ✅ Completed |
-| PostgreSQL database | ✅ Completed |
-| SQL analytical views | ✅ Completed |
-| KPI and classification logic | ✅ Completed |
-| Tableau worksheets | ✅ Completed |
-| Interactive dashboards | ✅ Completed |
-| Tableau Story and presentation | ✅ Completed |
-| Final documentation | 🔄 Final review |
+| Phase                          | Status          |
+| ------------------------------ | --------------- |
+| Project structure              | ✅ Completed    |
+| Data exploration               | ✅ Completed    |
+| ETL and cleaning               | ✅ Completed    |
+| PostgreSQL database            | ✅ Completed    |
+| SQL analytical views           | ✅ Completed    |
+| KPI and classification logic   | ✅ Completed    |
+| Tableau worksheets             | ✅ Completed    |
+| Interactive dashboards         | ✅ Completed    |
+| Tableau Story and presentation | ✅ Completed    |
+| Final documentation            | 🔄 Final review |
 
 ---
 
