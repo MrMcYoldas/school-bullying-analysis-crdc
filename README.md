@@ -106,9 +106,9 @@ The project uses a layered analytical architecture:
 5. **Classification layer** — project-defined priority thresholds, relative rankings, and within-state category order.
 6. **Tableau output** — interactive oversight, investigation, and action dashboards.
 
-![Figure 1. Data Architecture and Metric Construction](documentation/Images/Data%20Architecture%20%26%20Metric%20Construction.png)
+![Figure 1. Data Architecture & Metric Construction](documentation/Images/data-architecture-metric-construction.png)
 
-*Figure 1. Data Architecture and Metric Construction.*
+*Figure 1. Data Architecture & Metric Construction.*
 
 ### 💾 Why use SQL views?
 
@@ -294,9 +294,9 @@ For example, if an illustrative state reports:
 
 Issue Rank describes category order. It does not establish prevalence, severity, or causality. Categories with zero allegations display as **No reported allegations** rather than being presented as an active issue.
 
-![Figure 2. Classification, Ranking and Action Logic](documentation/Images/Classification%2C%20Ranking%20%26%20Action%20Logic.png)
+![Figure 2. Priority, Ranking & Action Logic](documentation/Images/priority-ranking-action-logic.png)
 
-*Figure 2. Classification, Ranking and Action Logic.*
+*Figure 2. Priority, Ranking & Action Logic.*
 
 ### 🎯 Action Matrix
 
@@ -365,9 +365,9 @@ The tooltips preserve detail without overcrowding the visualizations. Depending 
 - recommended follow-up;
 - interpretation and methodology notes.
 
-![Figure 3. Dashboard Data Dictionary and KPI Reference](documentation/Images/Dashboard%20Data%20Dictionary%20%26%20KPI%20Reference.png)
+![Figure 3. Dashboard Field & KPI Reference](documentation/Images/dashboard-field-kpi-reference.png)
 
-*Figure 3. Dashboard Data Dictionary and KPI Reference.*
+*Figure 3. Dashboard Field & KPI Reference.*
 
 ---
 
@@ -479,9 +479,9 @@ The final documentation is organized into three complementary resources:
 
 Supporting documentation graphics:
 
-- Data Architecture and Metric Construction
-- Classification, Ranking and Action Logic
-- Dashboard Data Dictionary and KPI Reference
+- Data Architecture & Metric Construction
+- Priority, Ranking & Action Logic
+- Dashboard Field & KPI Reference
 
 ---
 
